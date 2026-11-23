@@ -60,9 +60,9 @@ FOOTER = '''<footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand"><a class="brand small" href="/">''' + LOGO + '''ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
-      <div><h4>Product</h4><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
-      <div><h4>Help</h4><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
-      <div><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+      <div><h2 class="foot-h">Product</h2><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h2 class="foot-h">Help</h2><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h2 class="foot-h">Legal</h2><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
     </div>
     <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
   </div>
@@ -168,7 +168,7 @@ showcase = page_hero('Showcase', 'See what ClipHeaven makes.', 'From a live stre
   <section class="section tight showcase">
     <div class="wrap">
       <h2>The app.</h2>
-      <div class="shots">
+      <div class="shots" tabindex="0" role="region" aria-label="App screenshots">
         <figure><div class="phone sm"><img src="/img/app-home.jpg" width="585" height="1266" loading="lazy" alt="Home: clips ready to post with AI scores."></div><figcaption>Home: what's ready to post</figcaption></figure>
         <figure><div class="phone sm"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips: a grid of finished clips."></div><figcaption>Clips: everything you've made</figcaption></figure>
         <figure><div class="phone sm"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting: save, copy caption, mark as posted or skip."></div><figcaption>Post next: save, copy, post</figcaption></figure>
@@ -186,14 +186,14 @@ pricing = page_hero('Pricing', 'Simple pricing. No editing bill.', 'One plan for
     <div class="wrap">
       <div class="plans">
         <article class="plan">
-          <h3>Monthly</h3>
+          <h2 class="plan-name">Monthly</h2>
           <p class="price"><b>$25</b><span>/ month</span></p>
           <ul><li>Unlimited streamers</li><li>Clips every day on autopilot</li><li>AI scores and captions</li><li>Facecam-on-top look</li><li>The full ClipHeaven app</li></ul>
           <a class="btn btn-ghost js-waitlist" href="/#waitlist">Join the waitlist</a>
         </article>
         <article class="plan best">
           <span class="badge">Best value</span>
-          <h3>Lifetime</h3>
+          <h2 class="plan-name">Lifetime</h2>
           <p class="price"><b>$199</b><span>one time</span></p>
           <ul><li>Everything in Monthly</li><li>Pay once, keep it forever</li><li>All future updates</li><li>Early access to new features</li><li>Pays for itself in 8 months</li></ul>
           <a class="btn btn-primary js-waitlist" href="/#waitlist">Join the waitlist</a>
@@ -205,9 +205,9 @@ pricing = page_hero('Pricing', 'Simple pricing. No editing bill.', 'One plan for
   <section class="section tight">
     <div class="wrap">
       <h2>ClipHeaven vs editing by hand.</h2>
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="ClipHeaven compared with editing by hand">
         <table class="compare">
-          <thead><tr><th scope="col"></th><th scope="col">Editing by hand</th><th scope="col" class="us">ClipHeaven</th></tr></thead>
+          <thead><tr><th scope="col"><span class="sr-only">Task</span></th><th scope="col">Editing by hand</th><th scope="col" class="us">ClipHeaven</th></tr></thead>
           <tbody>
             <tr><th scope="row">Finding the moment</th><td>Watching hours of streams</td><td class="us">Done for you, scored out of 10</td></tr>
             <tr><th scope="row">Cutting and framing</th><td>An editing app, every clip</td><td class="us">Automatic, face on top</td></tr>
@@ -281,7 +281,7 @@ updates = [
  ('Nov 2026', 'Skip weak clips', 'Choose a minimum AI score; clips under it are never edited, saving time and minutes.', 'Clips'),
  ('Nov 2026', 'Smoother app', 'A liquid tab bar, a new design system and keyboard focus rings across the app.', 'App'),
 ]
-up_html = ''.join(f'<li class="update"><div class="when"><time>{d}</time><span class="label">{tag}</span></div><div><h3>{t}</h3><p>{x}</p></div></li>' for d, t, x, tag in updates)
+up_html = ''.join(f'<li class="update"><div class="when"><time>{d}</time><span class="label">{tag}</span></div><div><h2 class="update-title">{t}</h2><p>{x}</p></div></li>' for d, t, x, tag in updates)
 updates_page = page_hero("What's new", 'Always getting better.', 'ClipHeaven gets new features and fixes all the time. Here\'s the latest.') + f'''
   <section class="section tight">
     <div class="wrap narrow">

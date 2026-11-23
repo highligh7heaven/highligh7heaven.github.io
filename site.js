@@ -95,7 +95,7 @@
       i = (i + 1) % HEADLINES.length;
       if (calm) { rot.textContent = HEADLINES[i]; return; }
       rot.classList.add("out");
-      setTimeout(function () { rot.textContent = HEADLINES[i]; rot.classList.remove("out"); }, 300);
+      setTimeout(function () { rot.textContent = HEADLINES[i]; rot.classList.remove("out"); }, 200);
     }, SECONDS_EACH * 1000);
   }
 
@@ -221,7 +221,7 @@
           return;
         }
         showClip();
-      }, calm ? 0 : 280);
+      }, calm ? 0 : 220);
     }
     $("try-save").addEventListener("click", function () { this.classList.add("done"); this.textContent = "Saved"; appToast("Saved to Photos (demo)"); });
     $("try-copy").addEventListener("click", function () {
