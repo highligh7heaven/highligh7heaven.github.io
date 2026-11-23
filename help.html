@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Help | ClipHeaven</title>
+<meta name="description" content="How to set up ClipHeaven, step by step, and fix common problems.">
+<meta name="theme-color" content="#070A16">
+<meta property="og:title" content="Help | ClipHeaven">
+<meta property="og:description" content="How to set up ClipHeaven, step by step, and fix common problems.">
+<meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
+<meta property="og:type" content="website">
+<script>try{var c=JSON.parse(localStorage.getItem("ch.look")||"{}"),d=document.documentElement;["sky","clouds","motion","glass"].forEach(function(k){if(c[k])d.setAttribute("data-"+k,c[k]);});}catch(e){}document.documentElement.classList.add("js");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="gate-art" viewBox="0 0 200 400">
+    <defs><linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#FFF1C9"/><stop offset=".45" stop-color="#EBBE55"/><stop offset="1" stop-color="#A9781F"/></linearGradient></defs>
+    <path d="M6 400V120C6 60 60 18 196 10V400" fill="rgba(20,16,40,.35)" stroke="url(#gold)" stroke-width="8"/>
+    <g stroke="url(#gold)" stroke-width="5" fill="none">
+      <path d="M40 400V96M74 400V62M108 400V40M142 400V26M176 400V14"/>
+      <path d="M6 250H196M6 330H196"/>
+      <path d="M40 250c0-26 34-26 34 0M108 250c0-26 34-26 34 0M74 330c0-26 34-26 34 0M142 330c0-26 34-26 34 0"/>
+      <circle cx="120" cy="170" r="30"/><circle cx="120" cy="170" r="14"/>
+      <path d="M120 140v-14M120 200v14M90 170H76M150 170h14"/>
+    </g>
+    <g fill="url(#gold)"><circle cx="40" cy="96" r="7"/><circle cx="74" cy="62" r="7"/><circle cx="108" cy="40" r="7"/><circle cx="142" cy="26" r="7"/><circle cx="176" cy="14" r="7"/></g>
+  </symbol>
+  <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise"/>
+    <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+    <feDisplacementMap in="SourceGraphic" in2="soft" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html" aria-current="page">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html" aria-current="page">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Set up ClipHeaven in about 30 minutes.</h1>
+      <p class="lede">You do this once, from your phone or a computer. Every step is free, and the app checks your setup for you.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="need">
+        <h2>What you'll need</h2>
+        <ul class="chips"><li>A phone or computer</li><li>A Google account</li><li>A GitHub account</li><li>A Twitch account</li><li>Your ClipHeaven licence (from Whop)</li></ul>
+      </div>
+      <ol class="hsteps"><li class="hstep"><span class="step-n">1</span><div><h3>Make your own copy <small>2 min</small></h3><p>Accept the GitHub invite you get after buying, then make your own copy (a "fork") of ClipHeaven with one tap and switch on its Actions.</p></div></li><li class="hstep"><span class="step-n">2</span><div><h3>Add your licence key <small>1 min</small></h3><p>Copy the licence key from your Whop membership and save it in your copy as a secret.</p></div></li><li class="hstep"><span class="step-n">3</span><div><h3>Connect Twitch <small>5 min</small></h3><p>Register a free app at dev.twitch.tv and save its two keys. This lets ClipHeaven find streamers' clips.</p></div></li><li class="hstep"><span class="step-n">4</span><div><h3>Connect Google Drive <small>15 min</small></h3><p>The fiddly one, but you only do it once: a free Google Cloud project so finished clips can save to your Drive.</p></div></li><li class="hstep"><span class="step-n">5</span><div><h3>Turn on AI titles <small>2 min</small></h3><p>Optional but recommended: a free Gemini key so ClipHeaven can watch clips, score them and write titles.</p></div></li><li class="hstep"><span class="step-n">6</span><div><h3>Check and run <small>5 min</small></h3><p>Run the setup check, pick your streamers in the app, then make your first test clip.</p></div></li></ol>
+      <p class="fine">Buyers get the full guide, with every tap written out, in their copy of ClipHeaven.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap narrow">
+      <h2>Fixing common problems.</h2>
+      <div class="faq">
+        <details><summary>A run stopped with a red cross</summary><p>Open the app: failed runs show what went wrong and how to fix it, often with a one-tap fix. Most often a key was pasted with a space at the end.</p></details>
+        <details><summary>No clips showed up</summary><p>Check you've picked streamers in Settings and that they streamed recently. Quiet streamers can give fewer clips; try looking back more days.</p></details>
+        <details><summary>Google says "This app isn't verified"</summary><p>That's normal for your own Google Cloud project. Tap Advanced, then Go to ClipHeaven. Only you use it.</p></details>
+        <details><summary>Runs stopped after a while</summary><p>GitHub's free minutes may have run out for the month. The app's Stats tab shows your minutes, when they reset and your options.</p></details>
+        <details><summary>Still stuck?</summary><p>Take a screenshot of what you see and get in touch from the <a href="/about.html">contact page</a>.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
+        <h2>Ready when you are.</h2>
+        <p>Join the waitlist to get ClipHeaven at launch.</p>
+        <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h2 class="foot-h">Product</h2><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h2 class="foot-h">Help</h2><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h2 class="foot-h">Legal</h2><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="tune" id="tune">
+  <button class="tune-btn" id="tune-btn" aria-expanded="false" aria-controls="tune-panel" aria-label="Customise how the site looks">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg><span>Customise</span>
+  </button>
+  <div class="tune-panel" id="tune-panel" role="dialog" aria-label="Customise how the site looks" hidden>
+    <div class="tune-row"><span class="tune-l" id="tl-sky">Sky</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-sky" data-key="sky">
+        <button role="radio" data-v="scroll">Follows scroll</button><button role="radio" data-v="night">Night</button><button role="radio" data-v="sunset">Sunset</button><button role="radio" data-v="heaven">Heaven</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-clouds">Clouds</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-clouds" data-key="clouds">
+        <button role="radio" data-v="few">Few</button><button role="radio" data-v="some">Some</button><button role="radio" data-v="lots">Lots</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-motion">Motion</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-motion" data-key="motion">
+        <button role="radio" data-v="full">Full</button><button role="radio" data-v="calm">Calm</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-glass">Panels</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-glass" data-key="glass">
+        <button role="radio" data-v="glass">Glass</button><button role="radio" data-v="solid">Solid</button>
+      </div></div>
+    <button class="tune-reset" id="tune-reset" type="button">Reset to default</button>
+  </div>
+</div>
+<script src="/sky-gl.js"></script>
+<script src="/site.js"></script>
+</body>
+</html>

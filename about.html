@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About & contact | ClipHeaven</title>
+<meta name="description" content="Why ClipHeaven exists, the rules it follows, and how to get in touch.">
+<meta name="theme-color" content="#070A16">
+<meta property="og:title" content="About & contact | ClipHeaven">
+<meta property="og:description" content="Why ClipHeaven exists, the rules it follows, and how to get in touch.">
+<meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
+<meta property="og:type" content="website">
+<script>try{var c=JSON.parse(localStorage.getItem("ch.look")||"{}"),d=document.documentElement;["sky","clouds","motion","glass"].forEach(function(k){if(c[k])d.setAttribute("data-"+k,c[k]);});}catch(e){}document.documentElement.classList.add("js");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="gate-art" viewBox="0 0 200 400">
+    <defs><linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#FFF1C9"/><stop offset=".45" stop-color="#EBBE55"/><stop offset="1" stop-color="#A9781F"/></linearGradient></defs>
+    <path d="M6 400V120C6 60 60 18 196 10V400" fill="rgba(20,16,40,.35)" stroke="url(#gold)" stroke-width="8"/>
+    <g stroke="url(#gold)" stroke-width="5" fill="none">
+      <path d="M40 400V96M74 400V62M108 400V40M142 400V26M176 400V14"/>
+      <path d="M6 250H196M6 330H196"/>
+      <path d="M40 250c0-26 34-26 34 0M108 250c0-26 34-26 34 0M74 330c0-26 34-26 34 0M142 330c0-26 34-26 34 0"/>
+      <circle cx="120" cy="170" r="30"/><circle cx="120" cy="170" r="14"/>
+      <path d="M120 140v-14M120 200v14M90 170H76M150 170h14"/>
+    </g>
+    <g fill="url(#gold)"><circle cx="40" cy="96" r="7"/><circle cx="74" cy="62" r="7"/><circle cx="108" cy="40" r="7"/><circle cx="142" cy="26" r="7"/><circle cx="176" cy="14" r="7"/></g>
+  </symbol>
+  <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise"/>
+    <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+    <feDisplacementMap in="SourceGraphic" in2="soft" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Made by a clipper, for clippers.</h1>
+      <p class="lede">ClipHeaven started as one person's tool for running a clip page without spending every evening editing.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap narrow prose">
+      <p>Running a clip page means watching hours of streams, finding the moment, cutting it, framing it, captioning it and posting it, again and again. ClipHeaven does everything except the posting, so you can spend your time on what grows a page: posting consistently and picking the right streamers.</p>
+      <p>It's built with a few rules that won't change:</p>
+      <ul class="rules">
+        <li><b>You post, always.</b> ClipHeaven never posts for you, so your accounts stay within each platform's rules.</li>
+        <li><b>No fake views.</b> No bots, no tricks. Just good clips.</li>
+        <li><b>Credit the streamer.</b> Every clip shows where it came from.</li>
+        <li><b>Your stuff is yours.</b> Clips save to your own Google Drive, and your keys stay in your own accounts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tight" id="contact">
+    <div class="wrap narrow">
+      <div class="contact-card">
+        <h2>Get in touch</h2>
+        <p class="muted" id="contact-none">A contact email is coming soon. For now, join the waitlist and we'll reach out at launch.</p>
+        <p id="contact-has" hidden><a class="btn btn-ghost btn-lg" id="contact-link" href="#">Email us</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
+        <h2>Come along for the ride.</h2>
+        <p>Join the waitlist to hear when ClipHeaven opens.</p>
+        <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h2 class="foot-h">Product</h2><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h2 class="foot-h">Help</h2><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h2 class="foot-h">Legal</h2><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="tune" id="tune">
+  <button class="tune-btn" id="tune-btn" aria-expanded="false" aria-controls="tune-panel" aria-label="Customise how the site looks">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg><span>Customise</span>
+  </button>
+  <div class="tune-panel" id="tune-panel" role="dialog" aria-label="Customise how the site looks" hidden>
+    <div class="tune-row"><span class="tune-l" id="tl-sky">Sky</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-sky" data-key="sky">
+        <button role="radio" data-v="scroll">Follows scroll</button><button role="radio" data-v="night">Night</button><button role="radio" data-v="sunset">Sunset</button><button role="radio" data-v="heaven">Heaven</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-clouds">Clouds</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-clouds" data-key="clouds">
+        <button role="radio" data-v="few">Few</button><button role="radio" data-v="some">Some</button><button role="radio" data-v="lots">Lots</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-motion">Motion</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-motion" data-key="motion">
+        <button role="radio" data-v="full">Full</button><button role="radio" data-v="calm">Calm</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-glass">Panels</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-glass" data-key="glass">
+        <button role="radio" data-v="glass">Glass</button><button role="radio" data-v="solid">Solid</button>
+      </div></div>
+    <button class="tune-reset" id="tune-reset" type="button">Reset to default</button>
+  </div>
+</div>
+<script src="/sky-gl.js"></script>
+<script src="/site.js"></script>
+</body>
+</html>
