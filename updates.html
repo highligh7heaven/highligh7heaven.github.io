@@ -10,6 +10,7 @@
 <meta property="og:description" content="The latest ClipHeaven features and improvements.">
 <meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
 <meta property="og:type" content="website">
+<script>try{var c=JSON.parse(localStorage.getItem("ch.look")||"{}"),d=document.documentElement;["sky","clouds","motion","glass"].forEach(function(k){if(c[k])d.setAttribute("data-"+k,c[k]);});}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -96,6 +97,31 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="tune" id="tune">
+  <button class="tune-btn" id="tune-btn" aria-expanded="false" aria-controls="tune-panel" aria-label="Customise how the site looks">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg><span>Customise</span>
+  </button>
+  <div class="tune-panel" id="tune-panel" role="dialog" aria-label="Customise how the site looks" hidden>
+    <div class="tune-row"><span class="tune-l" id="tl-sky">Sky</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-sky" data-key="sky">
+        <button role="radio" data-v="scroll">Follows scroll</button><button role="radio" data-v="night">Night</button><button role="radio" data-v="sunset">Sunset</button><button role="radio" data-v="heaven">Heaven</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-clouds">Clouds</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-clouds" data-key="clouds">
+        <button role="radio" data-v="few">Few</button><button role="radio" data-v="some">Some</button><button role="radio" data-v="lots">Lots</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-motion">Motion</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-motion" data-key="motion">
+        <button role="radio" data-v="full">Full</button><button role="radio" data-v="calm">Calm</button>
+      </div></div>
+    <div class="tune-row"><span class="tune-l" id="tl-glass">Panels</span>
+      <div class="segs" role="radiogroup" aria-labelledby="tl-glass" data-key="glass">
+        <button role="radio" data-v="glass">Glass</button><button role="radio" data-v="solid">Solid</button>
+      </div></div>
+    <button class="tune-reset" id="tune-reset" type="button">Reset to default</button>
+  </div>
+</div>
+<script src="/sky-gl.js"></script>
 <script src="/site.js"></script>
 </body>
 </html>

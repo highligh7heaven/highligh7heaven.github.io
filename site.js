@@ -15,7 +15,40 @@
   var SECONDS_EACH = 3.5;
 
   document.documentElement.classList.add("js");
-  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var calmPref = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var calm = calmPref || document.documentElement.getAttribute("data-motion") === "calm";
+
+  // ---------- Customise: the visitor chooses the sky, clouds, motion and panel style ----------
+  var LOOK = { sky: "scroll", clouds: "some", motion: calmPref ? "calm" : "full", glass: "glass" }, saved = {};
+  try { saved = JSON.parse(localStorage.getItem("ch.look") || "{}"); } catch (e) {}
+  var look = Object.assign({}, LOOK, saved), tuneBtn = document.getElementById("tune-btn"), tunePanel = document.getElementById("tune-panel");
+  function applyLook(save) {
+    var d = document.documentElement;
+    Object.keys(look).forEach(function (k) { if (look[k] === LOOK[k] && k !== "motion") d.removeAttribute("data-" + k); else d.setAttribute("data-" + k, look[k]); });
+    calm = calmPref || look.motion === "calm";
+    document.querySelectorAll(".tune .segs").forEach(function (g) {
+      g.querySelectorAll("button").forEach(function (b) { var on = look[g.dataset.key] === b.dataset.v; b.classList.toggle("on", on); b.setAttribute("aria-checked", on ? "true" : "false"); b.tabIndex = on ? 0 : -1; });
+    });
+    if (save) { var diff = {}; Object.keys(look).forEach(function (k) { if (look[k] !== LOOK[k]) diff[k] = look[k]; }); try { localStorage.setItem("ch.look", JSON.stringify(diff)); } catch (e) {} }
+    window.dispatchEvent(new Event("ch:settings"));
+    if (typeof onScroll === "function") onScroll();
+  }
+  if (tuneBtn && tunePanel) {
+    function setTune(open) { tunePanel.hidden = !open; tuneBtn.setAttribute("aria-expanded", open ? "true" : "false"); if (open) { var on = tunePanel.querySelector(".on"); if (on) on.focus(); } }
+    tuneBtn.addEventListener("click", function () { setTune(tunePanel.hidden); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !tunePanel.hidden) { setTune(false); tuneBtn.focus(); } });
+    document.addEventListener("click", function (e) { if (!tunePanel.hidden && !e.target.closest(".tune")) setTune(false); });
+    tunePanel.addEventListener("click", function (e) {
+      var b = e.target.closest(".segs button"); if (!b) return;
+      look[b.parentNode.dataset.key] = b.dataset.v; applyLook(true);
+    });
+    tunePanel.addEventListener("keydown", function (e) {  // arrow keys move between choices, like any radio group
+      var b = e.target.closest(".segs button"); if (!b || ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].indexOf(e.key) < 0) return;
+      e.preventDefault(); var all = [].slice.call(b.parentNode.children), i = all.indexOf(b), n = all[(i + (e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : all.length - 1)) % all.length];
+      look[b.parentNode.dataset.key] = n.dataset.v; applyLook(true); n.focus();
+    });
+    document.getElementById("tune-reset").addEventListener("click", function () { look = Object.assign({}, LOOK); try { localStorage.removeItem("ch.look"); } catch (e) {} applyLook(false); });
+  }
 
   // waitlist buttons
   document.querySelectorAll(".js-waitlist").forEach(function (a) {
@@ -182,14 +215,15 @@
         }
       }
     }
-    if (!calm && !document.hidden) requestAnimationFrame(frame);
+    if (!document.hidden) requestAnimationFrame(frame);
   }
   size(); onScroll();
   var lastW = window.innerWidth;  // phones resize the height when the address bar hides; only rebuild the sky when the width changes
   window.addEventListener("resize", function () { if (window.innerWidth !== lastW) { lastW = window.innerWidth; size(); } else { H = window.innerHeight; } onScroll(); if (calm) frame(performance.now()); });
-  window.addEventListener("scroll", function () { onScroll(); if (calm) frame(performance.now()); }, { passive: true });
-  document.addEventListener("visibilitychange", function () { if (!document.hidden && !calm) requestAnimationFrame(frame); });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) requestAnimationFrame(frame); });
   requestAnimationFrame(frame);
+  applyLook(false);
 
   // ---------- 2. try the app: the posting flow, with three example clips ----------
   var tryApp = document.getElementById("tryapp");
