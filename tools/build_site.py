@@ -107,7 +107,7 @@ def page(file, active, title, desc, main):
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
 <meta property="og:type" content="website">
-<script>try{{var c=JSON.parse(localStorage.getItem("ch.look")||"{{}}"),d=document.documentElement;["sky","clouds","motion","glass"].forEach(function(k){{if(c[k])d.setAttribute("data-"+k,c[k]);}});}}catch(e){{}}</script>
+<script>try{{var c=JSON.parse(localStorage.getItem("ch.look")||"{{}}"),d=document.documentElement;["sky","clouds","motion","glass"].forEach(function(k){{if(c[k])d.setAttribute("data-"+k,c[k]);}});}}catch(e){{}}document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">

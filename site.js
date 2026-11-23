@@ -120,16 +120,119 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // rotating headline
+  // rotating headline: each word rises out of its own mask
   var rot = document.getElementById("rotator"), i = 0;
-  if (rot && HEADLINES.length > 1) {
-    setInterval(function () {
-      if (document.hidden) return;
+  function words(el, text) {
+    el.textContent = "";
+    text.split(" ").forEach(function (w, k) {
+      var o = document.createElement("span"), n = document.createElement("span");
+      o.className = "w"; n.textContent = w; o.style.setProperty("--i", k); o.appendChild(n);
+      if (k) el.appendChild(document.createTextNode(" "));
+      el.appendChild(o);
+    });
+  }
+  function riseIn(el, text) {
+    el.classList.add("pre"); el.classList.remove("leave"); words(el, text);
+    void el.offsetWidth; el.classList.remove("pre");
+  }
+  if (rot) {
+    if (calm) words(rot, rot.textContent.trim()); else riseIn(rot, rot.textContent.trim());
+    if (HEADLINES.length > 1) setInterval(function () {
+      if (document.hidden || document.documentElement.classList.contains("paused")) return;
       i = (i + 1) % HEADLINES.length;
-      if (calm) { rot.textContent = HEADLINES[i]; return; }
-      rot.classList.add("out");
-      setTimeout(function () { rot.textContent = HEADLINES[i]; rot.classList.remove("out"); }, 200);
+      if (calm) { words(rot, HEADLINES[i]); return; }
+      rot.classList.add("leave");
+      setTimeout(function () { riseIn(rot, HEADLINES[i]); }, 420);
     }, SECONDS_EACH * 1000);
+  }
+
+  // pause button for everything that loops
+  var pauseBtn = document.getElementById("loop-pause");
+  function paused() { return document.documentElement.classList.contains("paused"); }
+  if (pauseBtn) pauseBtn.addEventListener("click", function () {
+    var on = !paused(); document.documentElement.classList.toggle("paused", on);
+    pauseBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    pauseBtn.setAttribute("aria-label", on ? "Play the animation" : "Pause the animation");
+  });
+
+  // the live phone: new clips arrive on the Home screen
+  var feed = document.getElementById("lv-feed");
+  if (feed) {
+    var FEED = [
+      ["Did he really just clutch a 1v4?", "Streamer A", "0:18", 9, "/img/demo1.jpg"],
+      ["Chat could not believe this ending", "Streamer B", "0:24", 8, "/img/demo2.jpg"],
+      ["The jump scare that broke the stream", "Streamer C", "0:15", 9, "/img/demo3.jpg"],
+      ["One HP left and still went for it", "Streamer A", "0:21", 8, "/img/demo2.jpg"],
+      ["He was not ready for that question", "Streamer B", "0:19", 7, "/img/demo1.jpg"],
+      ["Pulled it off on the very last try", "Streamer C", "0:26", 9, "/img/demo3.jpg"]
+    ];
+    var clipN = 0, count = 3, numEl = document.getElementById("lv-n"), note = document.getElementById("lv-note"), noteT = document.getElementById("lv-note-t"),
+        f1 = document.getElementById("f1-score");
+    function card(c, fresh) {
+      var el = document.createElement("div");
+      el.className = "lc" + (fresh ? " new" : "");
+      el.innerHTML = '<span class="lc-th"></span><span class="lc-tx"><b></b><small></small><span class="lc-tag">Ready</span></span>' +
+        '<span class="lc-sc"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="val"/></svg><b></b></span>';
+      el.querySelector(".lc-th").style.backgroundImage = "url(" + c[4] + ")";
+      el.querySelector(".lc-tx b").textContent = c[0];
+      el.querySelector("small").textContent = c[1] + " · " + c[2];
+      el.querySelector(".lc-sc b").textContent = c[3];
+      el.style.setProperty("--v", c[3] / 10);
+      return el;
+    }
+    [2, 3, 4, 5].forEach(function (j) { feed.appendChild(card(FEED[j], false)); });
+    function bump(el) { if (!el) return; el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
+    function arrive() {
+      if (document.hidden || paused() || calm) return;
+      var c = FEED[clipN % FEED.length]; clipN++;
+      var first = feed.firstElementChild, shift = first ? first.offsetHeight + 10 : 0;
+      feed.style.transition = "none"; feed.style.transform = "translateY(-" + shift + "px)";
+      feed.insertBefore(card(c, true), feed.firstChild);
+      void feed.offsetWidth;
+      feed.style.transition = "transform 640ms cubic-bezier(.22,1,.36,1)"; feed.style.transform = "";
+      while (feed.children.length > 5) feed.removeChild(feed.lastElementChild);
+      count = count >= 12 ? 3 : count + 1; numEl.textContent = count; bump(numEl);
+      if (f1) { f1.textContent = c[3]; bump(f1); }
+      if (clipN % 2 === 1) {
+        noteT.textContent = "New clip ready, scored " + c[3] + "/10";
+        note.classList.add("show"); setTimeout(function () { note.classList.remove("show"); }, 1900);
+      }
+    }
+    setTimeout(arrive, 1400);
+    setInterval(arrive, 3200);
+  }
+
+  // the floating chips sit at different depths and drift a little toward the pointer
+  var heroPhone = document.getElementById("hero-phone");
+  if (heroPhone && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, moving = false, layers = [[heroPhone.querySelector(".phone"), -4], [heroPhone.querySelector(".f1"), 14], [heroPhone.querySelector(".f2"), 22]];
+    function drift() {
+      cx += (tx - cx) * .08; cy += (ty - cy) * .08;
+      layers.forEach(function (l) { if (l[0]) l[0].style.translate = (cx * l[1]).toFixed(2) + "px " + (cy * l[1]).toFixed(2) + "px"; });
+      if (Math.abs(tx - cx) + Math.abs(ty - cy) > .002) requestAnimationFrame(drift); else moving = false;
+    }
+    document.querySelector(".hero").addEventListener("pointermove", function (e) {
+      if (calm) return;
+      tx = e.clientX / window.innerWidth - .5; ty = e.clientY / window.innerHeight - .5;
+      if (!moving) { moving = true; requestAnimationFrame(drift); }
+    });
+  }
+
+  // the statement lights up word by word as you read down
+  var lit = document.getElementById("lit"), litBox = document.getElementById("statement"), litWords = [];
+  if (lit) {
+    var txt = lit.textContent.trim(); lit.textContent = ""; var sr = document.createElement("span"); sr.className = "sr-only"; sr.textContent = txt; lit.appendChild(sr);
+    txt.split(" ").forEach(function (w, k) { var s2 = document.createElement("span"); s2.className = "w"; s2.setAttribute("aria-hidden", "true"); s2.textContent = w; lit.appendChild(s2); if (k) lit.insertBefore(document.createTextNode(" "), s2); litWords.push(s2); });
+    var litLast = -1;
+    function lightUp() {
+      var r = litBox.getBoundingClientRect(), vh = window.innerHeight;
+      var p = calm ? 1 : Math.max(0, Math.min(1, (-r.top + vh * .25) / Math.max(1, r.height - vh * .9)));
+      var upto = Math.round(p * litWords.length);
+      if (upto === litLast) return; litLast = upto;
+      litWords.forEach(function (w, k) { w.classList.toggle("on", k < upto); });
+    }
+    window.addEventListener("scroll", lightUp, { passive: true }); window.addEventListener("resize", lightUp); lightUp();
+    window.addEventListener("ch:settings", function () { litLast = -1; lightUp(); });
   }
 
   // ---------- Heaven: the sky rises as you scroll ----------

@@ -1,39 +1,42 @@
 
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- Hero: the app itself, live, with clips arriving -->
+  <section class="hero" data-enter>
     <div class="wrap hero-in">
       <div class="hero-copy">
         <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Launching soon</p>
-        <h1 class="headline" aria-live="polite">
+        <h1 class="headline">
           <span class="rotator" id="rotator">Viral clips, made while you sleep.</span>
         </h1>
-        <p class="sub">ClipHeaven watches your favourite Twitch and Kick streamers, finds the moments worth watching, and turns them into vertical clips with captions, ready for TikTok, Reels and Shorts. <b>You just post.</b></p>
+        <p class="sub">ClipHeaven watches the Twitch and Kick streamers you pick, cuts their best moments into captioned vertical clips, and sends up to 20 a day to your phone. You just post.</p>
         <div class="cta">
           <a class="btn btn-primary btn-lg js-waitlist" href="#waitlist">Join the waitlist</a>
           <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
         </div>
-        <ul class="trust" aria-label="Highlights">
-          <li><b>20+</b> clips a day</li>
-          <li><b>0</b> editing</li>
-          <li><b>1 tap</b> captions</li>
-        </ul>
+        <div class="works">
+          <span class="wg"><span class="works-l">Clips from</span>
+          <span class="brandrow"><img src="/img/brands/twitch.svg" width="22" height="22" alt="Twitch"><img src="/img/brands/kick.svg" width="22" height="22" alt="Kick"></span></span>
+          <span class="wg"><span class="works-l">for</span>
+          <span class="brandrow"><img src="/img/brands/tiktok.svg" width="22" height="22" alt="TikTok"><img src="/img/brands/instagram.svg" width="22" height="22" alt="Instagram Reels"><img src="/img/brands/youtubeshorts.svg" width="22" height="22" alt="YouTube Shorts"></span></span>
+        </div>
       </div>
-      <div class="hero-phone">
+      <div class="hero-phone" id="hero-phone">
         <div class="glow" aria-hidden="true"></div>
-        <figure class="phone">
-          <img src="/img/app-home.jpg" width="585" height="1266" alt="The ClipHeaven app's Home screen: 6 clips ready to post, each with an AI score.">
-        </figure>
-        <div class="float f1" aria-hidden="true"><span class="ring">9</span> AI score</div>
+        <div class="phone live" role="img" aria-label="The ClipHeaven app: new clips arrive on the Home screen, each with an AI score out of 10.">
+          <div class="lv" aria-hidden="true">
+            <div class="lv-status"><b>9:41</b><span class="lv-isl"></span><span class="lv-sig"><i></i><i></i><i></i><i></i></span></div>
+            <div class="lv-note" id="lv-note"><span class="lv-app"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.6"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="#fff"/></svg></span><span class="lv-nt"><b>ClipHeaven</b><span id="lv-note-t">New clip ready, scored 9/10</span></span><small>now</small></div>
+            <div class="lv-head"><span>Good morning</span><b><span class="lv-n" id="lv-n">3</span> to post</b></div>
+            <div class="lv-feed" id="lv-feed"></div>
+            <div class="lv-tabs"><i class="on"></i><i></i><b>+</b><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="float f1" aria-hidden="true"><span class="ring" id="f1-score">9</span><span>AI score</span></div>
         <div class="float f2" aria-hidden="true"><svg class="mini-tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Caption copied</div>
+        <button class="loop-pause" id="loop-pause" type="button" aria-label="Pause the animation" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M8 5l11 7-11 7z"/></svg></button>
       </div>
     </div>
   </section>
-
-  <!-- clips arriving, like the app's live feed -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span>New clip from Streamer A, scored <b>9/10</b></span><span>Posted to TikTok</span><span>New clip from Streamer C, scored <b>8/10</b></span><span>Streamer B is live</span><span>New clip from Streamer B, scored <b>9/10</b></span><span>Caption copied</span><span>New clip from Streamer A, scored <b>7/10</b></span><span>Next run in 2h</span><span>New clip from Streamer A, scored <b>9/10</b></span><span>Posted to TikTok</span><span>New clip from Streamer C, scored <b>8/10</b></span><span>Streamer B is live</span><span>New clip from Streamer B, scored <b>9/10</b></span><span>Caption copied</span><span>New clip from Streamer A, scored <b>7/10</b></span><span>Next run in 2h</span></div>
-  </div>
 
   <!-- How it works: a pinned phone plays the journey as you scroll -->
   <section class="story" id="how" aria-label="How ClipHeaven works">
@@ -67,15 +70,22 @@
     </div>
   </section>
 
+  <!-- Statement: the words light up as you read down -->
+  <section class="statement" id="statement" aria-label="What ClipHeaven does for you">
+    <div class="wrap">
+      <p class="lit" id="lit">You pick the streamers. ClipHeaven finds the moments, cuts them, frames them, captions them and scores them out of ten. The weak ones never get made. You wake up to the best ones and post them in seconds.</p>
+    </div>
+  </section>
+
   <!-- Showcase -->
   <section class="section showcase">
     <div class="wrap">
       <h2>Everything on your phone.</h2>
       <p class="lede">No laptop, no editing software. Your clips land in the app, best first. <a class="more" href="/showcase.html">See the showcase</a></p>
       <div class="shots" tabindex="0" role="region" aria-label="App screenshots">
-        <figure><div class="phone sm"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips screen: a grid of finished clips, each marked Ready."></div><figcaption>Every clip, ready to go</figcaption></figure>
-        <figure><div class="phone sm"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting screen: Open in Drive, Copy caption, Mark as posted and Skip."></div><figcaption>Save, copy, post, next</figcaption></figure>
-        <figure><div class="phone sm"><img src="/img/app-stats.jpg" width="585" height="1266" loading="lazy" alt="Stats screen: clips made this week and clips per streamer."></div><figcaption>See what's working</figcaption></figure>
+        <figure><a class="phone sm m-zoom" href="/showcase.html" tabindex="-1"><span class="scr"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips screen: a grid of finished clips, each marked Ready."></span></a></figure>
+        <figure><a class="phone sm m-zoom" href="/showcase.html" tabindex="-1"><span class="scr"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting screen: Open in Drive, Copy caption, Mark as posted and Skip."></span></a></figure>
+        <figure><a class="phone sm m-zoom" href="/showcase.html" tabindex="-1"><span class="scr"><img src="/img/app-stats.jpg" width="585" height="1266" loading="lazy" alt="Stats screen: clips made this week and clips per streamer."></span></a></figure>
       </div>
     </div>
   </section>
@@ -113,20 +123,49 @@
     </div>
   </section>
 
-  <!-- Features -->
+  <!-- Features: each card shows the thing it describes -->
   <section class="section" id="features">
     <div class="wrap">
-      <h2>Built for clip pages that want to grow.</h2>
-      <div class="grid">
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg></span><h3>AI picks the moments</h3><p>Every candidate is watched and scored out of 10. Weak clips are skipped before they're made.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4 4v-4h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8 9h8M8 12h5"/></svg></span><h3>Captions that fit</h3><p>Word-perfect captions timed to the speech, with strong language bleeped.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M4 12h16"/><circle cx="12" cy="7.8" r="1.8"/></svg></span><h3>Facecam on top</h3><p>Gameplay streams get the streamer's face on top and the game below, so viewers see the reaction.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M5 4.5 3 6.5M19 4.5l2 2"/></svg></span><h3>On autopilot</h3><p>Set the hours and it runs by itself. Get a ping when new clips are ready.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 18.5h4M10 9l3 2-3 2z"/></svg></span><h3>Post next</h3><p>One clip at a time: save, copy caption, mark as posted or skip. Built for posting fast.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.4 3.6-8.3.3 1.9 1.4 3 2.4 3.4.3-2.6 1.6-4.9 3.7-6.4-.3 2.9 3.3 5.3 3.3 10.1 0 4.4-2.6 7.4-6.5 7.4z"/></svg></span><h3>Who's hot</h3><p>See which streamers are blowing up right now and add them in one tap.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18.5a4 4 0 0 1-.6-8 5.5 5.5 0 0 1 10.7-1.4A4.6 4.6 0 0 1 17 18.5z"/></svg></span><h3>Saved to your Drive</h3><p>Finished clips go straight into your own Google Drive. Yours to keep.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Plays by the rules</h3><p>No auto-posting, no fake views. You stay in control of every post, and every clip credits the streamer.</p></article>
+      <h2>Everything a clip page needs, done for you.</h2>
+      <div class="bento">
+        <article class="bcard b-score">
+          <div class="bviz" aria-hidden="true">
+            <div class="bwave"><i style="--h:22"></i><i style="--h:30"></i><i style="--h:18"></i><i style="--h:34"></i><i style="--h:26"></i><i style="--h:40"></i><i style="--h:28"></i><i style="--h:92"></i><i style="--h:100"></i><i style="--h:66"></i><i style="--h:34"></i><i style="--h:24"></i><i style="--h:30"></i><i style="--h:20"></i><i style="--h:28"></i><i style="--h:22"></i></div>
+            <div class="bring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="val"/></svg><b>9</b></div>
+          </div>
+          <h3>AI picks the moments</h3>
+          <p>It hears the big reactions, watches each one and scores it out of 10. Weak clips are skipped before they're made.</p>
+        </article>
+        <article class="bcard b-caps">
+          <div class="bviz" aria-hidden="true">
+            <div class="bclip"><div class="bc-cam"></div><div class="bc-line"></div><div class="bc-game"></div>
+              <p class="bc-words"><span>no</span> <span>way</span> <span>he</span> <span>just</span> <span>hit</span> <span>that</span></p></div>
+          </div>
+          <h3>Captions on every word</h3>
+          <p>Timed to the speech, word by word, with strong language bleeped.</p>
+        </article>
+        <article class="bcard b-split">
+          <div class="bviz" aria-hidden="true">
+            <div class="bmorph"><div class="bm-game"></div><div class="bm-cam"></div></div>
+          </div>
+          <h3>Facecam on top, game below</h3>
+          <p>A wide stream becomes a phone-shaped clip with the reaction big on top. Pure gameplay keeps the whole screen.</p>
+        </article>
+        <article class="bcard b-drive">
+          <div class="bviz" aria-hidden="true">
+            <div class="bfolder"><div class="bf-head"><img src="/img/brands/googledrive.svg" width="18" height="18" alt=""><b>ClipHeaven</b></div>
+              <ul><li><span class="bf-t"></span>clip_0412.mp4</li><li><span class="bf-t"></span>clip_0411.mp4</li><li><span class="bf-t"></span>clip_0410.mp4</li></ul></div>
+          </div>
+          <h3>Saved to your Google Drive</h3>
+          <p>Every finished clip lands in your own Drive. Yours to keep.</p>
+        </article>
       </div>
+      <ul class="extras">
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M5 4.5 3 6.5M19 4.5l2 2"/></svg></span><div><h3>On autopilot</h3><p>Set the hours once. It runs by itself and pings you when clips are ready.</p></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.4 3.6-8.3.3 1.9 1.4 3 2.4 3.4.3-2.6 1.6-4.9 3.7-6.4-.3 2.9 3.3 5.3 3.3 10.1 0 4.4-2.6 7.4-6.5 7.4z"/></svg></span><div><h3>Who's hot</h3><p>See which streamers are blowing up and add them in one tap.</p></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 18.5h4M10 9l3 2-3 2z"/></svg></span><div><h3>Post next</h3><p>One clip at a time: save, copy the caption, post or skip.</p></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div><h3>Plays by the rules</h3><p>No auto-posting, no fake views. Every clip credits the streamer.</p></div></li>
+      </ul>
     </div>
   </section>
 
@@ -166,16 +205,9 @@
 
   <!-- FAQ -->
   <section class="section" id="faq">
-    <div class="wrap narrow">
+    <div class="wrap">
       <h2>Questions people ask.</h2>
-      <div class="faq">
-        <details><summary>Do I need to know how to edit?</summary><p>No. ClipHeaven finds, cuts and captions the clips. You only post them.</p></details>
-        <details><summary>Does it post for me?</summary><p>No, on purpose. You post every clip yourself, which keeps your accounts within TikTok's, Instagram's and YouTube's rules. ClipHeaven gets the clip and caption ready so posting takes seconds.</p></details>
-        <details><summary>Which streamers can I clip?</summary><p>Any public Twitch or Kick streamer you choose. Every clip credits the streamer's channel. Always follow each platform's rules and respect a streamer's wishes about clipping.</p></details>
-        <details><summary>Do I need a computer?</summary><p>No. Everything runs in the cloud and you use the app on your phone. Setup takes about 30–40 minutes once, with the <a href="/help.html">step-by-step guide</a>.</p></details>
-        <details><summary>How many clips will I get?</summary><p>You choose. Around 20 a day is a good target for a growing page, and you can make more or fewer.</p></details>
-        <details><summary>When does it launch?</summary><p>Soon. Join the waitlist and you'll be the first to know, plus early-bird pricing.</p></details>
-      </div>
+      <div class="qa"><div class="q"><h3>Do I need to know how to edit?</h3><p>No. ClipHeaven finds, cuts and captions the clips. You only post them.</p></div><div class="q"><h3>Does it post for me?</h3><p>No, on purpose. You post every clip yourself, which keeps your accounts within TikTok's, Instagram's and YouTube's rules. ClipHeaven gets the clip and caption ready so posting takes seconds.</p></div><div class="q"><h3>Which streamers can I clip?</h3><p>Any public Twitch or Kick streamer you choose. Every clip credits the streamer's channel. Always follow each platform's rules and respect a streamer's wishes about clipping.</p></div><div class="q"><h3>Do I need a computer?</h3><p>No. Everything runs in the cloud and you use the app on your phone. Setup takes about 30–40 minutes once, with the <a href="/help.html">step-by-step guide</a>.</p></div><div class="q"><h3>How many clips will I get?</h3><p>You choose. Around 20 a day is a good target for a growing page, and you can make more or fewer.</p></div><div class="q"><h3>When does it launch?</h3><p>Soon. Join the waitlist and you'll be the first to know, plus early-bird pricing.</p></div></div>
     </div>
   </section>
 
