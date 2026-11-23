@@ -44,6 +44,68 @@
     }, SECONDS_EACH * 1000);
   }
 
+  // ---------- Heaven: the sky rises as you scroll ----------
+  var dusk = document.getElementById("sky-dusk"), dawn = document.getElementById("sky-dawn"), rays = document.getElementById("rays");
+  var far = document.getElementById("clouds-far"), mid = document.getElementById("clouds-mid"), near = document.getElementById("clouds-near");
+  var starsC = document.getElementById("stars"), motesC = document.getElementById("motes");
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.5), W = 0, H = 0, stars = [], motes = [], progress = 0, scrollY = 0;
+  function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function size() {
+    W = window.innerWidth; H = window.innerHeight;
+    [starsC, motesC].forEach(function (c) { if (!c) return; c.width = W * dpr; c.height = H * dpr; c.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0); });
+    var n = Math.round(W * H / 5000);
+    stars = []; for (var k = 0; k < n; k++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + .3, t: Math.random() * 6.28, s: .5 + Math.random() * 1.5 });
+    var m = Math.round(W * H / 26000);
+    motes = []; for (var j = 0; j < m; j++) motes.push(newMote(true));
+  }
+  function newMote(anywhere) { return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: Math.random() * 2.2 + .6, v: .2 + Math.random() * .6, w: Math.random() * 6.28 }; }
+  function onScroll() {
+    scrollY = window.scrollY || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - H);
+    progress = clamp(scrollY / max);
+    if (dusk) dusk.style.opacity = clamp((progress - .12) / .35).toFixed(3);
+    if (dawn) dawn.style.opacity = clamp((progress - .55) / .35).toFixed(3);
+    if (rays) rays.style.opacity = (clamp((progress - .5) / .4) * .9).toFixed(3);
+    // clouds rise past you at different speeds (parallax), deeper layers slower
+    if (far) far.style.transform = "translate3d(0," + (-progress * 60) + "vh,0)";
+    if (mid) mid.style.transform = "translate3d(0," + (-progress * 110) + "vh,0)";
+    if (near) near.style.transform = "translate3d(0," + (-progress * 170) + "vh,0)";
+  }
+  var t0 = performance.now();
+  function frame(now) {
+    var t = (now - t0) / 1000;
+    if (starsC) {
+      var g = starsC.getContext("2d"), a = 1 - clamp(progress / .45);
+      g.clearRect(0, 0, W, H);
+      if (a > 0.01) {
+        for (var k = 0; k < stars.length; k++) {
+          var st = stars[k], tw = calm ? .8 : .55 + .45 * Math.sin(t * st.s + st.t);
+          g.globalAlpha = a * tw; g.fillStyle = "#fff"; g.beginPath(); g.arc(st.x, (st.y - scrollY * .05 + H * 10) % H, st.r, 0, 6.283); g.fill();
+        }
+      }
+    }
+    if (motesC) {
+      var m2 = motesC.getContext("2d"), b = clamp((progress - .3) / .4);
+      m2.clearRect(0, 0, W, H);
+      if (b > 0.01) {
+        for (var j = 0; j < motes.length; j++) {
+          var mo = motes[j];
+          if (!calm) { mo.y -= mo.v; mo.x += Math.sin(t + mo.w) * .25; if (mo.y < -10) motes[j] = newMote(false); }
+          var glow = m2.createRadialGradient(mo.x, mo.y, 0, mo.x, mo.y, mo.r * 4);
+          glow.addColorStop(0, "rgba(255,240,200," + (.9 * b) + ")"); glow.addColorStop(1, "rgba(255,240,200,0)");
+          m2.fillStyle = glow; m2.beginPath(); m2.arc(mo.x, mo.y, mo.r * 4, 0, 6.283); m2.fill();
+        }
+      }
+    }
+    if (!calm && !document.hidden) requestAnimationFrame(frame);
+  }
+  size(); onScroll();
+  var lastW = window.innerWidth;  // phones resize the height when the address bar hides; only rebuild the sky when the width changes
+  window.addEventListener("resize", function () { if (window.innerWidth !== lastW) { lastW = window.innerWidth; size(); } else { H = window.innerHeight; } onScroll(); if (calm) frame(performance.now()); });
+  window.addEventListener("scroll", function () { onScroll(); if (calm) frame(performance.now()); }, { passive: true });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && !calm) requestAnimationFrame(frame); });
+  requestAnimationFrame(frame);
+
   // sections fade up as they come into view
   var items = document.querySelectorAll(".step, .feat, .plan, .shots figure, .faq details, .final");
   if ("IntersectionObserver" in window && !calm) {

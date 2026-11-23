@@ -13,6 +13,19 @@
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
+<!-- The sky behind everything: night stars at the top, clouds and dawn in the middle, golden heaven at the bottom. -->
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+
 
 <header class="nav">
   <div class="nav-in">
@@ -174,6 +187,7 @@
   <section class="section" id="waitlist">
     <div class="wrap">
       <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
         <h2>Grow your clip page without editing a single clip.</h2>
         <p>Be first in line when ClipHeaven opens, and get early-bird pricing.</p>
         <a class="btn btn-primary btn-lg js-waitlist" id="waitlist-btn" href="#waitlist">Join the waitlist</a>

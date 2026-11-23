@@ -1,7 +1,7 @@
 /* ClipHeaven website. Same look as the app: deep navy, cherry pink, a touch of gold.
    Every raw value lives here as a token. */
 :root {
-  --bg: #0B0F1B; --bg-2: #0E1220; --panel: #151A2B; --card: #1B2133; --line: rgba(255,255,255,.08);
+  --bg: #070A16; --bg-2: #0E1220; --panel: rgba(18,23,40,.78); --panel-solid: #151A2B; --card: #1B2133; --line: rgba(255,255,255,.08);
   --ink: #F1F3F8; --ink-2: #CDD2E0; --muted: #98A0B6;
   --cherry: #FF3D6E; --cherry-2: #FF4F7B; --cherry-solid: #D6194F; --cherry-soft: #FF8AA6; --gold: #EBBE55; --sky: #94AFFF;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, system-ui, sans-serif;
@@ -93,7 +93,7 @@ p { margin: 0; }
 .step-n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(180deg, var(--cherry-2), var(--cherry-solid)); font-weight: 800; margin-bottom: var(--sp-4); }
 @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
 
-.showcase { background: linear-gradient(180deg, transparent, rgba(255,255,255,.02) 30%, transparent); }
+.showcase { background: none; }
 .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-6); align-items: start; }
 .shots figure { margin: 0; display: flex; flex-direction: column; gap: var(--sp-3); align-items: center; }
 .shots figure:nth-child(2) { transform: translateY(-24px); }
@@ -157,3 +157,62 @@ figcaption { color: var(--ink-2); font-weight: 700; font-size: 15px; }
   .rotator, .js .reveal, .feat, .btn { transition: none; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* =====================================================================
+   Heaven: the sky rises as you scroll. Night with stars → dusk with clouds
+   → dawn gold with light beams. Only transform and opacity animate.
+   ===================================================================== */
+.nav, main, .foot { position: relative; z-index: 1; }
+.heaven { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; contain: strict; }
+.sky { position: absolute; inset: 0; }
+.sky-night { background: radial-gradient(80% 60% at 70% 0%, #1A1F4A 0%, transparent 60%), linear-gradient(180deg, #050816 0%, #0B1030 60%, #1A1440 100%); }
+.sky-dusk { opacity: 0; background: radial-gradient(90% 60% at 50% 100%, rgba(255,110,150,.55), transparent 70%), linear-gradient(180deg, #1B1248 0%, #4A1F6B 45%, #B5407A 85%, #F08A6E 100%); }
+.sky-dawn { opacity: 0; background: radial-gradient(70% 50% at 50% 0%, rgba(255,246,214,.95), transparent 70%), linear-gradient(180deg, #F7D9A4 0%, #F2A97E 35%, #B0607E 75%, #3A2558 100%); }
+#stars, #motes { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rays { position: absolute; left: 50%; top: -30vh; width: 160vmax; height: 160vmax; margin-left: -80vmax; opacity: 0; transform-origin: 50% 0; }
+.rays i { position: absolute; left: 50%; top: 0; width: 7vmax; height: 100%; margin-left: -3.5vmax; transform-origin: 50% 0;
+  background: linear-gradient(180deg, rgba(255,244,210,.55), rgba(255,244,210,0) 70%); filter: blur(10px); border-radius: 50%; }
+.rays i:nth-child(1) { transform: rotate(-36deg); } .rays i:nth-child(2) { transform: rotate(-24deg); width: 4vmax; }
+.rays i:nth-child(3) { transform: rotate(-12deg); } .rays i:nth-child(4) { transform: rotate(0deg); width: 9vmax; }
+.rays i:nth-child(5) { transform: rotate(12deg); } .rays i:nth-child(6) { transform: rotate(24deg); width: 4vmax; } .rays i:nth-child(7) { transform: rotate(36deg); }
+.rays { animation: sway 18s ease-in-out infinite alternate; }
+@keyframes sway { from { rotate: -4deg; } to { rotate: 4deg; } }
+.clouds { position: absolute; left: -10%; right: -10%; height: 140vh; top: 0; will-change: transform; }
+.clouds::before, .clouds::after { content: ""; position: absolute; inset: 0; background-repeat: no-repeat; }
+.clouds.far { opacity: .35; }
+.clouds.far::before { background:
+  radial-gradient(18% 6% at 15% 70%, rgba(255,255,255,.55), transparent 70%), radial-gradient(22% 7% at 70% 85%, rgba(255,255,255,.5), transparent 70%),
+  radial-gradient(14% 5% at 45% 110%, rgba(255,255,255,.45), transparent 70%); animation: drift 90s linear infinite alternate; }
+.clouds.mid { opacity: .55; }
+.clouds.mid::before { background:
+  radial-gradient(26% 9% at 10% 95%, rgba(255,255,255,.75), transparent 70%), radial-gradient(20% 8% at 22% 92%, rgba(255,255,255,.6), transparent 70%),
+  radial-gradient(28% 10% at 80% 120%, rgba(255,255,255,.7), transparent 70%), radial-gradient(18% 7% at 92% 116%, rgba(255,255,255,.6), transparent 70%); animation: drift 60s linear infinite alternate-reverse; }
+.clouds.near { opacity: .8; }
+.clouds.near::before { background:
+  radial-gradient(34% 12% at 5% 150%, rgba(255,255,255,.9), transparent 70%), radial-gradient(30% 11% at 30% 160%, rgba(255,255,255,.85), transparent 70%),
+  radial-gradient(36% 12% at 70% 150%, rgba(255,255,255,.9), transparent 70%), radial-gradient(28% 10% at 98% 158%, rgba(255,255,255,.85), transparent 70%);
+  animation: drift 45s linear infinite alternate; }
+@keyframes drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+
+/* the cards become dark glass so the sky glows through them */
+.step, .feat, .plan, .faq details, .final, .eyebrow { box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+
+/* the gates: a huge glowing halo above the last call to action */
+.final { position: relative; overflow: hidden; background: radial-gradient(60% 80% at 50% 0%, rgba(255,214,140,.30), transparent 70%), rgba(18,23,40,.82); border-color: rgba(255,214,140,.35); }
+.halo-big { position: relative; width: 180px; height: 56px; margin: 0 auto var(--sp-2); }
+.halo-big::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 6px solid #FFD98A;
+  box-shadow: 0 0 24px 4px rgba(255,217,138,.8), inset 0 0 18px rgba(255,217,138,.7); animation: halo 4s ease-in-out infinite; }
+.halo-big i { position: absolute; left: 50%; top: 50%; width: 320px; height: 320px; margin: -160px 0 0 -160px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,226,160,.35), transparent); animation: glow 4s ease-in-out infinite; }
+@keyframes halo { 50% { transform: translateY(-6px); box-shadow: 0 0 40px 10px rgba(255,217,138,.95), inset 0 0 22px rgba(255,217,138,.9); } }
+@keyframes glow { 50% { transform: scale(1.15); opacity: .7; } }
+.logo ellipse { filter: drop-shadow(0 0 4px rgba(235,190,85,.9)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rays, .clouds::before, .halo-big::before, .halo-big i { animation: none; }
+}
+
+/* readable over the bright dawn: a soft dark glow behind text that sits on the sky, and a glass footer */
+h1, h2, .kicker, .lede, .fine, figcaption, .sub, .trust { text-shadow: 0 2px 18px rgba(16, 8, 36, .55), 0 1px 2px rgba(16, 8, 36, .5); }
+.lede, .fine, .trust { color: #E4E6F0; }
+.foot { background: rgba(10, 12, 26, .72); }
