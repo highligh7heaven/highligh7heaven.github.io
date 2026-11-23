@@ -5,7 +5,14 @@ S = os.path.dirname(os.path.abspath(__file__)) + '/'
 
 NAV = [('/', 'Home'), ('/showcase.html', 'Showcase'), ('/pricing.html', 'Pricing'), ('/help.html', 'Help'), ('/updates.html', "What's new")]
 
-SKY = '''<div class="heaven" aria-hidden="true">
+SKY = '''<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise"/>
+    <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+    <feDisplacementMap in="SourceGraphic" in2="soft" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div class="heaven" aria-hidden="true">
   <div class="sky sky-night"></div>
   <div class="sky sky-dusk" id="sky-dusk"></div>
   <div class="sky sky-dawn" id="sky-dawn"></div>

@@ -113,6 +113,11 @@
     var m = Math.round(W * H / 26000);
     motes = []; for (var j = 0; j < m; j++) motes.push(newMote(true));
   }
+  // one glowing dot drawn once, then stamped for every speck (much cheaper than a new gradient per speck per frame)
+  var sprite = document.createElement("canvas"); sprite.width = sprite.height = 32;
+  (function () { var g = sprite.getContext("2d"), gr = g.createRadialGradient(16, 16, 0, 16, 16, 16);
+    gr.addColorStop(0, "rgba(255,240,200,1)"); gr.addColorStop(.35, "rgba(255,240,200,.5)"); gr.addColorStop(1, "rgba(255,240,200,0)");
+    g.fillStyle = gr; g.fillRect(0, 0, 32, 32); })();
   function newMote(anywhere) { return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: Math.random() * 2.2 + .6, v: .2 + Math.random() * .6, w: Math.random() * 6.28 }; }
   function onScroll() {
     scrollY = window.scrollY || 0;
@@ -142,14 +147,12 @@
     }
     if (motesC) {
       var m2 = motesC.getContext("2d"), b = clamp((progress - .3) / .4);
-      m2.clearRect(0, 0, W, H);
+      m2.clearRect(0, 0, W, H); m2.globalAlpha = 1;
       if (b > 0.01) {
         for (var j = 0; j < motes.length; j++) {
           var mo = motes[j];
           if (!calm) { mo.y -= mo.v; mo.x += Math.sin(t + mo.w) * .25; if (mo.y < -10) motes[j] = newMote(false); }
-          var glow = m2.createRadialGradient(mo.x, mo.y, 0, mo.x, mo.y, mo.r * 4);
-          glow.addColorStop(0, "rgba(255,240,200," + (.9 * b) + ")"); glow.addColorStop(1, "rgba(255,240,200,0)");
-          m2.fillStyle = glow; m2.beginPath(); m2.arc(mo.x, mo.y, mo.r * 4, 0, 6.283); m2.fill();
+          var d = mo.r * 8; m2.globalAlpha = .9 * b; m2.drawImage(sprite, mo.x - d / 2, mo.y - d / 2, d, d);
         }
       }
     }

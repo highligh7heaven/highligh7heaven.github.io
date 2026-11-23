@@ -372,3 +372,86 @@ main { animation: pageIn 500ms var(--ease); }
 .shots:has(> figure:nth-child(4)) figure:nth-child(2) { transform: none; }
 .shots:has(> figure:nth-child(4)) figure:nth-child(even) { transform: translateY(-20px); }
 @media (max-width: 820px) { .shots:has(> figure:nth-child(4)) figure:nth-child(even) { transform: none; } }
+
+/* =====================================================================
+   Liquid glass: see-through glossy panels, a bright rim, a shine that
+   follows your pointer, candy-glass buttons, and (where the browser can)
+   a real liquid bend of the sky behind.
+   ===================================================================== */
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+:root {
+  --glass-fill: linear-gradient(140deg, rgba(255,255,255,.13) 0%, rgba(255,255,255,.04) 38%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.08) 100%), rgba(16,20,40,.38);
+  --glass-rim: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(255,255,255,.08), inset 1px 0 0 rgba(255,255,255,.12), inset -1px 0 0 rgba(255,255,255,.06);
+  --glass-depth: inset 0 0 30px rgba(255,255,255,.05), 0 24px 50px -26px rgba(0,0,0,.75);
+  --glass-blur: blur(18px) saturate(1.9) brightness(1.08);
+}
+.step, .feat, .plan, .faq details, .final, .hstep, .update, .rules li, .contact-card, .timeline li > div, .table-wrap, .chips li, .eyebrow,
+.btn-ghost, .menu, .toast, .ticker, .nav, .float, .timeline time {
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: var(--glass-rim), var(--glass-depth);
+}
+.nav { border-width: 0 0 1px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)), rgba(8,10,24,.42); }
+.plan.best { background: linear-gradient(160deg, rgba(255,90,130,.22), rgba(255,255,255,.04) 45%, rgba(255,255,255,.06)), rgba(16,20,40,.38); border-color: rgba(255,140,170,.45); }
+.final { background: radial-gradient(70% 90% at 50% 0%, rgba(255,214,140,.30), transparent 70%), var(--glass-fill); border-color: rgba(255,214,140,.4); }
+
+/* the gloss: a curved highlight across the top of every glass panel */
+.step, .feat, .plan, .hstep, .update, .contact-card, .final, .rules li, .timeline li > div { position: relative; overflow: hidden; isolation: isolate; }
+.step::after, .feat::after, .plan::after, .hstep::after, .update::after, .contact-card::after, .final::after, .rules li::after, .timeline li > div::after {
+  content: ""; position: absolute; left: -20%; right: -20%; top: -60%; height: 100%; border-radius: 50%; pointer-events: none; z-index: -1;
+  background: radial-gradient(closest-side, rgba(255,255,255,.16), rgba(255,255,255,.04) 60%, transparent);
+}
+/* the shine follows your pointer (the .spot light, now whiter and glassier) */
+.spot::before { background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.18), rgba(255,217,138,.08) 40%, transparent 65%); mix-blend-mode: screen; }
+.feat, .plan, .hstep, .update { transition: transform 450ms cubic-bezier(.3,1.4,.5,1), border-color var(--dur), box-shadow var(--dur); }
+.feat:hover, .plan:hover, .hstep:hover, .update:hover { transform: translateY(-4px) scale(1.012); border-color: rgba(255,255,255,.28); }
+
+/* candy-glass buttons */
+.btn-primary { background: linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.08) 48%, rgba(255,255,255,0) 52%), linear-gradient(180deg, #FF5F88, #D6194F);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 6px rgba(120,0,40,.35), 0 12px 30px -10px rgba(255,61,110,.65); border: 1px solid rgba(255,190,210,.5); }
+.btn-ghost { color: #fff; }
+.btn-ghost:hover { background: linear-gradient(140deg, rgba(255,255,255,.2), rgba(255,255,255,.06)), rgba(16,20,40,.4); }
+.btn:active { transform: scale(.96); }
+
+/* phone frames: a glossy glass edge */
+.phone { background: linear-gradient(160deg, rgba(255,255,255,.35), rgba(255,255,255,.06) 30%, rgba(255,255,255,.03) 70%, rgba(255,255,255,.18)), rgba(20,24,46,.6);
+  -webkit-backdrop-filter: blur(10px) saturate(1.6); backdrop-filter: blur(10px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.12), 0 40px 80px -30px rgba(0,0,0,.9); }
+.phone::after { content: ""; position: absolute; inset: 10px; border-radius: 34px; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 32%); }
+.phone.sm::after { inset: 8px; border-radius: 28px; }
+
+/* the real liquid bend: Chromium browsers can warp the sky behind glass. Others keep the plain glass above. */
+@supports (backdrop-filter: url(#liquid)) {
+  .nav, .final, .plan { backdrop-filter: url(#liquid) blur(16px) saturate(1.9) brightness(1.08); }
+}
+
+/* phones: a little less blur so scrolling stays smooth */
+@media (max-width: 760px) {
+  :root { --glass-blur: blur(12px) saturate(1.7) brightness(1.06); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .step, .feat, .plan, .faq details, .final, .hstep, .update, .rules li, .contact-card, .timeline li > div, .table-wrap, .chips li, .eyebrow, .btn-ghost, .menu, .toast, .ticker, .nav, .float, .timeline time {
+    background: #151A2B; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+/* glass panels clip their gloss, so the badge sits inside the card */
+.badge { top: 18px; left: auto; right: 18px; box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 4px 12px -4px rgba(235,190,85,.6); }
+/* smoothness: real blurred glass only on the big moments; the rest keeps the glossy look without the costly blur
+   (the sky behind is already soft, so they read as frosted glass anyway) */
+.step, .feat, .faq details, .hstep, .update, .rules li, .contact-card, .timeline li > div, .table-wrap, .chips li, .eyebrow, .btn-ghost, .ticker, .float, .timeline time {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  background: linear-gradient(140deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.05) 38%, rgba(255,255,255,.03) 60%, rgba(255,255,255,.09) 100%), rgba(14,18,38,.62);
+}
+@supports (backdrop-filter: url(#liquid)) {
+  .plan { backdrop-filter: blur(16px) saturate(1.9) brightness(1.08); }
+}
+/* beams: soft edges drawn into the gradient instead of a live blur, so swaying costs almost nothing */
+.rays i { filter: none; background: radial-gradient(50% 100% at 50% 0%, rgba(255,244,210,.42), rgba(255,244,210,.12) 45%, rgba(255,244,210,0) 75%); }
+.rays { will-change: transform; }
+/* the big waitlist box covers a lot of moving sky: glossy glass look, no live blur (the biggest smoothness win) */
+.final { -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  background: radial-gradient(70% 90% at 50% 0%, rgba(255,214,140,.30), transparent 70%), linear-gradient(140deg, rgba(255,255,255,.14), rgba(255,255,255,.04) 40%, rgba(255,255,255,.08)), rgba(14,18,38,.66); }
+@supports (backdrop-filter: url(#liquid)) {
+  .nav { backdrop-filter: url(#liquid) blur(16px) saturate(1.9) brightness(1.08); }
+}
