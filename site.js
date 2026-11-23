@@ -139,7 +139,6 @@
   var ring = document.getElementById("score-ring"), scoreNum = document.getElementById("score-num"), lastStep = -1, lastScore = -1;
   function story() {
     if (!storyTrack || !stage) return;
-    if (calm) { stage.setAttribute("data-step", "3"); return; }
     var r = storyTrack.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - H)), f = p * 5;
     var step = Math.min(4, Math.floor(f));
     if (step !== lastStep) { stage.setAttribute("data-step", String(step)); lastStep = step; }

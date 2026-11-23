@@ -590,9 +590,9 @@ main { animation: pageIn 500ms var(--ease); }
 .gate-light { position: absolute; left: 50%; top: 50%; width: 30%; height: 120%; transform: translate(-50%, -50%) scaleX(.05); opacity: 0;
   background: radial-gradient(closest-side, rgba(255,246,214,.95), rgba(255,226,160,.4) 50%, transparent); filter: blur(6px); transition: opacity 200ms; }
 @media (prefers-reduced-motion: reduce) {
+  /* less motion, same story: the phone still steps through as you scroll, with quick fades and no movement */
   .gates { display: none; }
-  .story-track { height: auto; }
-  .story-stage { position: relative; height: auto; }
-  .story-steps li { opacity: 1 !important; position: static !important; }
-  .story-steps li, .screen > *, .tick, .burst, .sc-clip .cap, .app-video, .story-stage[data-step="1"] .sc-wave i { transition: none; animation: none; }
+  .screen > *, .story-steps li, .sc-clip .cap { transition: opacity 250ms linear !important; transform: none !important; }
+  .tick, .burst, .app-video { transition: opacity 250ms linear !important; transform: none !important; }
+  .story-stage[data-step="1"] .sc-wave i { animation: none; }
 }
