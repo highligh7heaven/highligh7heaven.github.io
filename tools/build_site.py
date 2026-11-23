@@ -83,6 +83,9 @@ def page(file, active, title, desc, main):
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -102,7 +105,6 @@ def page(file, active, title, desc, main):
 def page_hero(kicker, title, lede):
     return f'''  <section class="page-hero">
     <div class="wrap">
-      <p class="kicker">{kicker}</p>
       <h1>{title}</h1>
       <p class="lede">{lede}</p>
     </div>
@@ -136,13 +138,13 @@ showcase = page_hero('Showcase', 'See what ClipHeaven makes.', 'From a live stre
       <h2>The look: face on top, game below.</h2>
       <div class="split-demo">
         <div class="before">
-          <span class="tag">Before · the stream</span>
+          <span class="tag">Before: the stream</span>
           <div class="frame16"><div class="game-art"></div><div class="cam-art"></div></div>
           <p>A wide stream with a small facecam in the corner. On a phone, the face is tiny and the reaction gets lost.</p>
         </div>
         <div class="arrow" aria-hidden="true">→</div>
         <div class="after">
-          <span class="tag good">After · the clip</span>
+          <span class="tag good">After: the clip</span>
           <div class="frame9"><div class="cam-top"></div><div class="line"></div><div class="game-bottom"></div><span class="quote">“no way that just happened”</span></div>
           <p>The streamer's face fills the top, the game fills the bottom, and short quotes sit on the line between. Built for TikTok, Reels and Shorts.</p>
         </div>
@@ -167,29 +169,29 @@ showcase = page_hero('Showcase', 'See what ClipHeaven makes.', 'From a live stre
     <div class="wrap">
       <h2>The app.</h2>
       <div class="shots">
-        <figure><div class="phone sm tilt"><img src="/img/app-home.jpg" width="585" height="1266" loading="lazy" alt="Home: clips ready to post with AI scores."></div><figcaption>Home: what's ready to post</figcaption></figure>
-        <figure><div class="phone sm tilt"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips: a grid of finished clips."></div><figcaption>Clips: everything you've made</figcaption></figure>
-        <figure><div class="phone sm tilt"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting: save, copy caption, mark as posted or skip."></div><figcaption>Post next: save, copy, post</figcaption></figure>
-        <figure><div class="phone sm tilt"><img src="/img/app-stats.jpg" width="585" height="1266" loading="lazy" alt="Stats: clips made and per streamer."></div><figcaption>Stats: see what works</figcaption></figure>
+        <figure><div class="phone sm"><img src="/img/app-home.jpg" width="585" height="1266" loading="lazy" alt="Home: clips ready to post with AI scores."></div><figcaption>Home: what's ready to post</figcaption></figure>
+        <figure><div class="phone sm"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips: a grid of finished clips."></div><figcaption>Clips: everything you've made</figcaption></figure>
+        <figure><div class="phone sm"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting: save, copy caption, mark as posted or skip."></div><figcaption>Post next: save, copy, post</figcaption></figure>
+        <figure><div class="phone sm"><img src="/img/app-stats.jpg" width="585" height="1266" loading="lazy" alt="Stats: clips made and per streamer."></div><figcaption>Stats: see what works</figcaption></figure>
       </div>
-      <p class="fine center">Example clips shown with placeholder pictures.</p>
+      <p class="fine center">Example clips are shown with placeholder pictures.</p>
     </div>
   </section>
 ''' + cta('Want this for your clip page?', 'Join the waitlist and be first in when ClipHeaven opens.')
-page('showcase.html', '/showcase.html', 'Showcase · ClipHeaven', 'See the clips ClipHeaven makes and the app you post them from.', showcase)
+page('showcase.html', '/showcase.html', 'Showcase | ClipHeaven', 'See the clips ClipHeaven makes and the app you post them from.', showcase)
 
 # ---------- Pricing ----------
 pricing = page_hero('Pricing', 'Simple pricing. No editing bill.', 'One plan for everything ClipHeaven does. Pay monthly, or once for life.') + '''
   <section class="section tight">
     <div class="wrap">
       <div class="plans">
-        <article class="plan spot">
+        <article class="plan">
           <h3>Monthly</h3>
           <p class="price"><b>$25</b><span>/ month</span></p>
           <ul><li>Unlimited streamers</li><li>Clips every day on autopilot</li><li>AI scores and captions</li><li>Facecam-on-top look</li><li>The full ClipHeaven app</li></ul>
           <a class="btn btn-ghost js-waitlist" href="/#waitlist">Join the waitlist</a>
         </article>
-        <article class="plan best spot">
+        <article class="plan best">
           <span class="badge">Best value</span>
           <h3>Lifetime</h3>
           <p class="price"><b>$199</b><span>one time</span></p>
@@ -231,7 +233,7 @@ pricing = page_hero('Pricing', 'Simple pricing. No editing bill.', 'One plan for
     </div>
   </section>
 ''' + cta('Lock in early-bird pricing.', 'Waitlist members hear first when ClipHeaven opens.')
-page('pricing.html', '/pricing.html', 'Pricing · ClipHeaven', 'ClipHeaven pricing: $25 a month or $199 lifetime.', pricing)
+page('pricing.html', '/pricing.html', 'Pricing | ClipHeaven', 'ClipHeaven pricing: $25 a month or $199 lifetime.', pricing)
 
 # ---------- Help ----------
 steps = [
@@ -242,7 +244,7 @@ steps = [
  ('Turn on AI titles', '2 min', 'Optional but recommended: a free Gemini key so ClipHeaven can watch clips, score them and write titles.'),
  ('Check and run', '5 min', 'Run the setup check, pick your streamers in the app, then make your first test clip.'),
 ]
-steps_html = ''.join(f'<li class="hstep spot"><span class="step-n">{i}</span><div><h3>{t} <small>{m}</small></h3><p>{d}</p></div></li>' for i, (t, m, d) in enumerate(steps, 1))
+steps_html = ''.join(f'<li class="hstep"><span class="step-n">{i}</span><div><h3>{t} <small>{m}</small></h3><p>{d}</p></div></li>' for i, (t, m, d) in enumerate(steps, 1))
 help_page = page_hero('Help', 'Set up ClipHeaven in about 30 minutes.', 'You do this once, from your phone or a computer. Every step is free, and the app checks your setup for you.') + f'''
   <section class="section tight">
     <div class="wrap">
@@ -268,7 +270,7 @@ help_page = page_hero('Help', 'Set up ClipHeaven in about 30 minutes.', 'You do 
     </div>
   </section>
 ''' + cta('Ready when you are.', 'Join the waitlist to get ClipHeaven at launch.')
-page('help.html', '/help.html', 'Help · ClipHeaven', 'How to set up ClipHeaven, step by step, and fix common problems.', help_page)
+page('help.html', '/help.html', 'Help | ClipHeaven', 'How to set up ClipHeaven, step by step, and fix common problems.', help_page)
 
 # ---------- What's new ----------
 updates = [
@@ -279,7 +281,7 @@ updates = [
  ('Nov 2026', 'Skip weak clips', 'Choose a minimum AI score; clips under it are never edited, saving time and minutes.', 'Clips'),
  ('Nov 2026', 'Smoother app', 'A liquid tab bar, a new design system and keyboard focus rings across the app.', 'App'),
 ]
-up_html = ''.join(f'<li class="update spot"><div class="when"><time>{d}</time><span class="label">{tag}</span></div><div><h3>{t}</h3><p>{x}</p></div></li>' for d, t, x, tag in updates)
+up_html = ''.join(f'<li class="update"><div class="when"><time>{d}</time><span class="label">{tag}</span></div><div><h3>{t}</h3><p>{x}</p></div></li>' for d, t, x, tag in updates)
 updates_page = page_hero("What's new", 'Always getting better.', 'ClipHeaven gets new features and fixes all the time. Here\'s the latest.') + f'''
   <section class="section tight">
     <div class="wrap narrow">
@@ -287,7 +289,7 @@ updates_page = page_hero("What's new", 'Always getting better.', 'ClipHeaven get
     </div>
   </section>
 ''' + cta('Get every update.', 'Lifetime members get every new feature, forever.')
-page('updates.html', '/updates.html', "What's new · ClipHeaven", 'The latest ClipHeaven features and improvements.', updates_page)
+page('updates.html', '/updates.html', "What's new | ClipHeaven", 'The latest ClipHeaven features and improvements.', updates_page)
 
 # ---------- About & contact ----------
 about = page_hero('About', 'Made by a clipper, for clippers.', 'ClipHeaven started as one person\'s tool for running a clip page without spending every evening editing.') + '''
@@ -306,7 +308,7 @@ about = page_hero('About', 'Made by a clipper, for clippers.', 'ClipHeaven start
 
   <section class="section tight" id="contact">
     <div class="wrap narrow">
-      <div class="contact-card spot">
+      <div class="contact-card">
         <h2>Get in touch</h2>
         <p class="muted" id="contact-none">A contact email is coming soon. For now, join the waitlist and we'll reach out at launch.</p>
         <p id="contact-has" hidden><a class="btn btn-ghost btn-lg" id="contact-link" href="#">Email us</a></p>
@@ -314,5 +316,5 @@ about = page_hero('About', 'Made by a clipper, for clippers.', 'ClipHeaven start
     </div>
   </section>
 ''' + cta('Come along for the ride.', 'Join the waitlist to hear when ClipHeaven opens.')
-page('about.html', '/about.html', 'About & contact · ClipHeaven', 'Why ClipHeaven exists, the rules it follows, and how to get in touch.', about)
+page('about.html', '/about.html', 'About & contact | ClipHeaven', 'Why ClipHeaven exists, the rules it follows, and how to get in touch.', about)
 print('built')

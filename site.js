@@ -234,13 +234,4 @@
     $("try-again").addEventListener("click", function () { at = 0; posted = 0; $("try-done").hidden = true; showClip(); });
   }
 
-  // sections fade up as they come into view
-  var items = document.querySelectorAll(".step, .feat, .plan, .shots figure, .faq details, .final, .timeline li, .hstep, .update, .rules li, .split-demo > div, .table-wrap, .contact-card");
-  if ("IntersectionObserver" in window && !calm) {
-    items.forEach(function (el) { el.classList.add("reveal"); });
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    items.forEach(function (el) { io.observe(el); });
-  }
 })();
