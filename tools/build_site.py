@@ -6,6 +6,18 @@ S = os.path.dirname(os.path.abspath(__file__)) + '/'
 NAV = [('/', 'Home'), ('/showcase.html', 'Showcase'), ('/pricing.html', 'Pricing'), ('/help.html', 'Help'), ('/updates.html', "What's new")]
 
 SKY = '''<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="gate-art" viewBox="0 0 200 400">
+    <defs><linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#FFF1C9"/><stop offset=".45" stop-color="#EBBE55"/><stop offset="1" stop-color="#A9781F"/></linearGradient></defs>
+    <path d="M6 400V120C6 60 60 18 196 10V400" fill="rgba(20,16,40,.35)" stroke="url(#gold)" stroke-width="8"/>
+    <g stroke="url(#gold)" stroke-width="5" fill="none">
+      <path d="M40 400V96M74 400V62M108 400V40M142 400V26M176 400V14"/>
+      <path d="M6 250H196M6 330H196"/>
+      <path d="M40 250c0-26 34-26 34 0M108 250c0-26 34-26 34 0M74 330c0-26 34-26 34 0M142 330c0-26 34-26 34 0"/>
+      <circle cx="120" cy="170" r="30"/><circle cx="120" cy="170" r="14"/>
+      <path d="M120 140v-14M120 200v14M90 170H76M150 170h14"/>
+    </g>
+    <g fill="url(#gold)"><circle cx="40" cy="96" r="7"/><circle cx="74" cy="62" r="7"/><circle cx="108" cy="40" r="7"/><circle cx="142" cy="26" r="7"/><circle cx="176" cy="14" r="7"/></g>
+  </symbol>
   <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%">
     <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise"/>
     <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
@@ -236,7 +248,7 @@ help_page = page_hero('Help', 'Set up ClipHeaven in about 30 minutes.', 'You do 
     <div class="wrap">
       <div class="need">
         <h2>What you'll need</h2>
-        <ul class="chips"><li>📱 A phone or computer</li><li>🟢 A Google account</li><li>🐙 A GitHub account</li><li>💜 A Twitch account</li><li>🎟️ Your ClipHeaven licence (from Whop)</li></ul>
+        <ul class="chips"><li>A phone or computer</li><li>A Google account</li><li>A GitHub account</li><li>A Twitch account</li><li>Your ClipHeaven licence (from Whop)</li></ul>
       </div>
       <ol class="hsteps">{steps_html}</ol>
       <p class="fine">Buyers get the full guide, with every tap written out, in their copy of ClipHeaven.</p>

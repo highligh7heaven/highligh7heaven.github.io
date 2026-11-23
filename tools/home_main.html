@@ -25,43 +25,45 @@
           <img src="/img/app-home.jpg" width="585" height="1266" alt="The ClipHeaven app's Home screen: 6 clips ready to post, each with an AI score.">
         </figure>
         <div class="float f1" aria-hidden="true"><span class="ring">9</span> AI score</div>
-        <div class="float f2" aria-hidden="true">✓ Caption copied</div>
+        <div class="float f2" aria-hidden="true"><svg class="mini-tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Caption copied</div>
       </div>
     </div>
   </section>
 
   <!-- clips arriving, like the app's live feed -->
   <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>🎬 New clip · Streamer A · <b>9/10</b></span><span>✓ Posted to TikTok</span><span>🎬 New clip · Streamer C · <b>8/10</b></span><span>🔥 Streamer B is live</span>
-      <span>🎬 New clip · Streamer B · <b>9/10</b></span><span>💬 Caption copied</span><span>🎬 New clip · Streamer A · <b>7/10</b></span><span>⏰ Next run in 2h</span>
-      <span>🎬 New clip · Streamer A · <b>9/10</b></span><span>✓ Posted to TikTok</span><span>🎬 New clip · Streamer C · <b>8/10</b></span><span>🔥 Streamer B is live</span>
-      <span>🎬 New clip · Streamer B · <b>9/10</b></span><span>💬 Caption copied</span><span>🎬 New clip · Streamer A · <b>7/10</b></span><span>⏰ Next run in 2h</span>
-    </div>
+    <div class="ticker-track"><span>New clip <i>·</i> Streamer A <b>9/10</b></span><span>Posted to TikTok</span><span>New clip <i>·</i> Streamer C <b>8/10</b></span><span>Streamer B is live</span><span>New clip <i>·</i> Streamer B <b>9/10</b></span><span>Caption copied</span><span>New clip <i>·</i> Streamer A <b>7/10</b></span><span>Next run in 2h</span><span>New clip <i>·</i> Streamer A <b>9/10</b></span><span>Posted to TikTok</span><span>New clip <i>·</i> Streamer C <b>8/10</b></span><span>Streamer B is live</span><span>New clip <i>·</i> Streamer B <b>9/10</b></span><span>Caption copied</span><span>New clip <i>·</i> Streamer A <b>7/10</b></span><span>Next run in 2h</span></div>
   </div>
 
-  <!-- How it works -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <p class="kicker">How it works</p>
-      <h2>From live stream to ready-to-post in three steps.</h2>
-      <ol class="steps">
-        <li class="step">
-          <span class="step-n">1</span>
-          <h3>Pick your streamers</h3>
-          <p>Choose who to clip on Twitch and Kick, or let ClipHeaven suggest who's hot right now.</p>
-        </li>
-        <li class="step">
-          <span class="step-n">2</span>
-          <h3>ClipHeaven does the work</h3>
-          <p>It listens and watches for the big reactions, scores every moment out of 10, cuts the best ones and adds captions.</p>
-        </li>
-        <li class="step">
-          <span class="step-n">3</span>
-          <h3>You post</h3>
-          <p>Open the app, save the clip, copy the caption, post. Next clip. About 30 seconds each.</p>
-        </li>
-      </ol>
+  <!-- How it works: a pinned phone plays the journey as you scroll -->
+  <section class="story" id="how" aria-label="How ClipHeaven works">
+    <div class="story-track" id="story">
+      <div class="story-stage" data-step="0">
+        <div class="story-copy">
+          <p class="kicker">How it works</p>
+          <ol class="story-steps">
+            <li data-s="0"><span class="sn">01</span><div><h3>A streamer goes live</h3><p>ClipHeaven keeps an eye on the Twitch and Kick streamers you pick.</p></div></li>
+            <li data-s="1"><span class="sn">02</span><div><h3>It hears the moment</h3><p>A huge reaction spikes the sound. ClipHeaven marks exactly where it happened.</p></div></li>
+            <li data-s="2"><span class="sn">03</span><div><h3>AI scores it out of 10</h3><p>It watches the moment and decides if it's worth posting. Weak ones never get made.</p></div></li>
+            <li data-s="3"><span class="sn">04</span><div><h3>Cut, framed, captioned</h3><p>Face on top, game below, captions timed to every word.</p></div></li>
+            <li data-s="4"><span class="sn">05</span><div><h3>You post it</h3><p>Save, copy the caption, post. About 30 seconds, and on to the next.</p></div></li>
+          </ol>
+        </div>
+        <div class="story-device">
+          <div class="phone story-phone">
+            <div class="screen">
+              <div class="sc-live"><span class="rec"></span>LIVE</div>
+              <div class="sc-stream"><div class="game-art"></div><div class="cam-art"></div></div>
+              <div class="sc-wave" aria-hidden="true"><i style="--h:18"></i><i style="--h:30"></i><i style="--h:22"></i><i style="--h:40"></i><i style="--h:26"></i><i style="--h:34"></i><i style="--h:20"></i><i style="--h:28"></i><i style="--h:24"></i><i style="--h:36"></i><i style="--h:30"></i><i style="--h:92"></i><i style="--h:100"></i><i style="--h:70"></i><i style="--h:38"></i><i style="--h:26"></i><i style="--h:32"></i><i style="--h:22"></i><i style="--h:28"></i><i style="--h:18"></i><i style="--h:24"></i><i style="--h:30"></i><i style="--h:20"></i><i style="--h:26"></i></div>
+              <div class="sc-mark">Big reaction found · 0:42</div>
+              <div class="sc-score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="val" id="score-ring"/></svg><b id="score-num">0</b><span>AI score</span></div>
+              <div class="sc-clip"><div class="cam-top"></div><div class="line"></div><div class="game-bottom"></div>
+                <span class="cap c1">"no way"</span><span class="cap c2">"that just happened"</span></div>
+              <div class="sc-posted"><span class="burst"></span><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>Posted</b><small>Next clip ready</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -79,20 +81,54 @@
     </div>
   </section>
 
+  <!-- Try the app: a real, tappable posting screen -->
+  <section class="section" id="try">
+    <div class="wrap try-in">
+      <div class="try-copy">
+        <p class="kicker">Try it</p>
+        <h2>Go on, post a few clips.</h2>
+        <p class="lede">This is the real posting flow from the app. Copy a caption, mark a clip as posted, or skip one. It's a demo, so nothing actually gets posted.</p>
+        <ul class="try-hints">
+          <li><span class="k">Copy caption</span> copies a real caption to your clipboard</li>
+          <li><span class="k">Mark as posted</span> moves you to the next clip</li>
+          <li><span class="k">Skip</span> saves it for later</li>
+        </ul>
+      </div>
+      <div class="try-device">
+        <div class="phone tryphone" id="tryapp">
+          <div class="app">
+            <div class="app-top"><span class="grip"></span></div>
+            <div class="app-video"><img id="try-img" src="/img/demo1.jpg" width="360" height="640" alt="Example clip"><span class="play"></span></div>
+            <div class="app-body">
+              <b class="app-title" id="try-title">Did he really just clutch a 1v4?</b>
+              <span class="app-meta" id="try-meta">Streamer A · 0:18 · Today</span>
+              <span class="app-why"><span class="chip9" id="try-score">9/10</span><span id="try-why">Huge reaction right at the peak.</span></span>
+              <div class="app-head"><span>Post next</span><b id="try-count">1 of 3</b></div>
+              <div class="app-row"><button class="abtn" id="try-save" type="button">Save video</button><button class="abtn" id="try-copy" type="button">Copy caption</button></div>
+              <div class="app-row main"><button class="abtn primary" id="try-post" type="button">Mark as posted</button><button class="abtn" id="try-skip" type="button">Skip</button></div>
+            </div>
+            <div class="app-done" id="try-done" hidden><span class="tick big"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b id="try-done-title">All posted</b><small id="try-done-sub">3 clips, about a minute and a half.</small><button class="abtn primary" id="try-again" type="button">Do it again</button></div>
+            <div class="app-toast" id="try-toast" hidden></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="section" id="features">
     <div class="wrap">
       <p class="kicker">Features</p>
       <h2>Built for clip pages that want to grow.</h2>
       <div class="grid">
-        <article class="feat spot"><span class="ico" aria-hidden="true">🎯</span><h3>AI picks the moments</h3><p>Every candidate is watched and scored out of 10. Weak clips are skipped before they're made.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">💬</span><h3>Captions that fit</h3><p>Word-perfect captions timed to the speech, with strong language bleeped.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">🎥</span><h3>Facecam on top</h3><p>Gameplay streams get the streamer's face on top and the game below, so viewers see the reaction.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">⏰</span><h3>On autopilot</h3><p>Set the hours and it runs by itself. Get a ping when new clips are ready.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">📲</span><h3>Post next</h3><p>One clip at a time: save, copy caption, mark as posted or skip. Built for posting fast.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">🔥</span><h3>Who's hot</h3><p>See which streamers are blowing up right now and add them in one tap.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">☁️</span><h3>Saved to your Drive</h3><p>Finished clips go straight into your own Google Drive. Yours to keep.</p></article>
-        <article class="feat spot"><span class="ico" aria-hidden="true">🛡️</span><h3>Plays by the rules</h3><p>No auto-posting, no fake views. You stay in control of every post, and every clip credits the streamer.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg></span><h3>AI picks the moments</h3><p>Every candidate is watched and scored out of 10. Weak clips are skipped before they're made.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4 4v-4h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8 9h8M8 12h5"/></svg></span><h3>Captions that fit</h3><p>Word-perfect captions timed to the speech, with strong language bleeped.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M4 12h16"/><circle cx="12" cy="7.8" r="1.8"/></svg></span><h3>Facecam on top</h3><p>Gameplay streams get the streamer's face on top and the game below, so viewers see the reaction.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M5 4.5 3 6.5M19 4.5l2 2"/></svg></span><h3>On autopilot</h3><p>Set the hours and it runs by itself. Get a ping when new clips are ready.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 18.5h4M10 9l3 2-3 2z"/></svg></span><h3>Post next</h3><p>One clip at a time: save, copy caption, mark as posted or skip. Built for posting fast.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.4 3.6-8.3.3 1.9 1.4 3 2.4 3.4.3-2.6 1.6-4.9 3.7-6.4-.3 2.9 3.3 5.3 3.3 10.1 0 4.4-2.6 7.4-6.5 7.4z"/></svg></span><h3>Who's hot</h3><p>See which streamers are blowing up right now and add them in one tap.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18.5a4 4 0 0 1-.6-8 5.5 5.5 0 0 1 10.7-1.4A4.6 4.6 0 0 1 17 18.5z"/></svg></span><h3>Saved to your Drive</h3><p>Finished clips go straight into your own Google Drive. Yours to keep.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Plays by the rules</h3><p>No auto-posting, no fake views. You stay in control of every post, and every clip credits the streamer.</p></article>
       </div>
     </div>
   </section>
@@ -149,14 +185,19 @@
   </section>
 
   <!-- Waitlist -->
-  <section class="section" id="waitlist">
+  <section class="section gates-section" id="waitlist">
     <div class="wrap">
+      <div class="gates" id="gates" aria-hidden="true">
+        <div class="gate left"><svg viewBox="0 0 200 400" preserveAspectRatio="none"><use href="#gate-art"/></svg></div>
+        <div class="gate right"><svg viewBox="0 0 200 400" preserveAspectRatio="none"><use href="#gate-art"/></svg></div>
+        <div class="gate-light"></div>
+      </div>
       <div class="final">
         <div class="halo-big" aria-hidden="true"><i></i></div>
         <h2>Grow your clip page without editing a single clip.</h2>
         <p>Be first in line when ClipHeaven opens, and get early-bird pricing.</p>
         <a class="btn btn-primary btn-lg js-waitlist" id="waitlist-btn" href="#waitlist">Join the waitlist</a>
-        <p class="soon" id="waitlist-soon" hidden>The waitlist opens in a few days. Check back soon!</p>
+        <p class="soon" id="waitlist-soon" hidden>The waitlist opens in a few days. Check back soon.</p>
       </div>
     </div>
   </section>

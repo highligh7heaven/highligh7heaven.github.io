@@ -23,7 +23,7 @@
   });
   var btn = document.getElementById("waitlist-btn"), soon = document.getElementById("waitlist-soon");
   if (!WAITLIST_URL && btn && soon) {
-    btn.addEventListener("click", function (e) { e.preventDefault(); soon.hidden = false; toast("The waitlist opens in a few days ✨"); });
+    btn.addEventListener("click", function (e) { e.preventDefault(); soon.hidden = false; toast("The waitlist opens in a few days"); });
   }
 
   // contact (About page)
@@ -131,6 +131,33 @@
     if (far) far.style.transform = "translate3d(0," + (-progress * 60) + "vh,0)";
     if (mid) mid.style.transform = "translate3d(0," + (-progress * 110) + "vh,0)";
     if (near) near.style.transform = "translate3d(0," + (-progress * 170) + "vh,0)";
+    story(); gates();
+  }
+
+  // ---------- 1. the scroll story: which step the phone shows ----------
+  var storyTrack = document.getElementById("story"), stage = storyTrack && storyTrack.querySelector(".story-stage");
+  var ring = document.getElementById("score-ring"), scoreNum = document.getElementById("score-num"), lastStep = -1, lastScore = -1;
+  function story() {
+    if (!storyTrack || !stage) return;
+    if (calm) { stage.setAttribute("data-step", "3"); return; }
+    var r = storyTrack.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - H)), f = p * 5;
+    var step = Math.min(4, Math.floor(f));
+    if (step !== lastStep) { stage.setAttribute("data-step", String(step)); lastStep = step; }
+    stage.classList.toggle("late", step === 3 && f - 3 > .5);
+    var score = step < 2 ? 0 : step > 2 ? 9 : Math.round(9 * clamp((f - 2) * 1.6));
+    if (score !== lastScore && ring && scoreNum) { lastScore = score; scoreNum.textContent = score; ring.style.strokeDashoffset = (314.16 * (1 - score / 10)).toFixed(1); }
+  }
+
+  // ---------- 3. the gates of heaven open as you reach them ----------
+  var gateBox = document.getElementById("gates"), gl = gateBox && gateBox.querySelector(".gate.left"), gr = gateBox && gateBox.querySelector(".gate.right"), glow = gateBox && gateBox.querySelector(".gate-light");
+  function gates() {
+    if (!gateBox || calm) return;
+    var r = gateBox.getBoundingClientRect(), o = clamp((H * .92 - r.top) / (H * .55)), e = o * o * (3 - 2 * o);
+    gl.style.transform = "rotateY(" + (-e * 108).toFixed(2) + "deg)";
+    gr.style.transform = "rotateY(" + (e * 108).toFixed(2) + "deg)";
+    glow.style.opacity = Math.sin(o * Math.PI).toFixed(3);
+    glow.style.transform = "translate(-50%,-50%) scaleX(" + (.05 + e * 3).toFixed(3) + ")";
+    gateBox.style.opacity = o > .97 ? "0" : "1";
   }
   var t0 = performance.now();
   function frame(now) {
@@ -164,6 +191,49 @@
   window.addEventListener("scroll", function () { onScroll(); if (calm) frame(performance.now()); }, { passive: true });
   document.addEventListener("visibilitychange", function () { if (!document.hidden && !calm) requestAnimationFrame(frame); });
   requestAnimationFrame(frame);
+
+  // ---------- 2. try the app: the posting flow, with three example clips ----------
+  var tryApp = document.getElementById("tryapp");
+  if (tryApp) {
+    var CLIPS = [
+      { img: "/img/demo1.jpg", title: "Did he really just clutch a 1v4?", meta: "Streamer A \u00b7 0:18 \u00b7 Today", score: 9, why: "Huge reaction right at the peak.", caption: "He really clutched a 1v4 #clips #streamerA" },
+      { img: "/img/demo2.jpg", title: "Chat could not believe this ending", meta: "Streamer B \u00b7 0:21 \u00b7 Today", score: 8, why: "Chat exploded the second it happened.", caption: "Nobody saw this ending coming #clips #streamerB" },
+      { img: "/img/demo3.jpg", title: "The craziest reaction of the week", meta: "Streamer C \u00b7 0:16 \u00b7 Today", score: 9, why: "Biggest sound spike of the stream.", caption: "The reaction says it all #clips #streamerC" }
+    ];
+    var at = 0, posted = 0, $ = function (id) { return document.getElementById(id); }, tt;
+    var vid = tryApp.querySelector(".app-video");
+    function appToast(text) { var t = $("try-toast"); t.textContent = text; t.hidden = false; t.style.animation = "none"; void t.offsetWidth; t.style.animation = ""; clearTimeout(tt); tt = setTimeout(function () { t.hidden = true; }, 1400); }
+    function showClip() {
+      var c = CLIPS[at];
+      $("try-img").src = c.img; $("try-title").textContent = c.title; $("try-meta").textContent = c.meta;
+      $("try-score").textContent = c.score + "/10"; $("try-why").textContent = c.why; $("try-count").textContent = (at + 1) + " of " + CLIPS.length;
+      ["try-save", "try-copy"].forEach(function (id) { var b = $(id); b.classList.remove("done"); b.textContent = id === "try-save" ? "Save video" : "Copy caption"; });
+      vid.classList.remove("out", "skip");
+    }
+    function next(kind) {
+      if (kind === "posted") posted++;
+      vid.classList.add(kind === "posted" ? "out" : "skip");
+      setTimeout(function () {
+        at++;
+        if (at >= CLIPS.length) {
+          $("try-done").hidden = false;
+          $("try-done-title").textContent = posted ? (posted === 1 ? "1 clip posted" : posted + " clips posted") : "All caught up";
+          $("try-done-sub").textContent = posted ? "That took seconds. Now imagine 20 a day." : "Skipped clips wait for you in the app.";
+          return;
+        }
+        showClip();
+      }, calm ? 0 : 280);
+    }
+    $("try-save").addEventListener("click", function () { this.classList.add("done"); this.textContent = "Saved"; appToast("Saved to Photos (demo)"); });
+    $("try-copy").addEventListener("click", function () {
+      var b = this, text = CLIPS[at].caption;
+      function ok() { b.classList.add("done"); b.textContent = "Copied"; appToast("Caption copied"); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, ok); else ok();
+    });
+    $("try-post").addEventListener("click", function () { appToast("Marked as posted"); next("posted"); });
+    $("try-skip").addEventListener("click", function () { appToast("Skipped"); next("skip"); });
+    $("try-again").addEventListener("click", function () { at = 0; posted = 0; $("try-done").hidden = true; showClip(); });
+  }
 
   // sections fade up as they come into view
   var items = document.querySelectorAll(".step, .feat, .plan, .shots figure, .faq details, .final, .timeline li, .hstep, .update, .rules li, .split-demo > div, .table-wrap, .contact-card");
