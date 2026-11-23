@@ -23,12 +23,67 @@
   });
   var btn = document.getElementById("waitlist-btn"), soon = document.getElementById("waitlist-soon");
   if (!WAITLIST_URL && btn && soon) {
-    btn.addEventListener("click", function (e) { e.preventDefault(); soon.hidden = false; });
+    btn.addEventListener("click", function (e) { e.preventDefault(); soon.hidden = false; toast("The waitlist opens in a few days ✨"); });
   }
 
-  // contact link
-  var contact = document.getElementById("contact");
-  if (CONTACT_EMAIL && contact) { contact.href = "mailto:" + CONTACT_EMAIL; contact.textContent = CONTACT_EMAIL; contact.hidden = false; }
+  // contact (About page)
+  if (CONTACT_EMAIL) {
+    var link = document.getElementById("contact-link"), has = document.getElementById("contact-has"), none = document.getElementById("contact-none");
+    if (link) { link.href = "mailto:" + CONTACT_EMAIL; link.textContent = "Email " + CONTACT_EMAIL; }
+    if (has) has.hidden = false; if (none) none.hidden = true;
+  }
+
+  // a little message at the bottom of the screen
+  var toastEl = document.getElementById("toast"), toastTimer;
+  function toast(text) {
+    if (!toastEl) return;
+    toastEl.textContent = text; toastEl.hidden = false;
+    toastEl.style.animation = "none"; void toastEl.offsetWidth; toastEl.style.animation = "";
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.hidden = true; }, 2600);
+  }
+
+  // menu on phones
+  var menuBtn = document.getElementById("menu-btn"), menu = document.getElementById("menu");
+  if (menuBtn && menu) {
+    function setMenu(open) { menu.hidden = !open; menuBtn.setAttribute("aria-expanded", open ? "true" : "false"); menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); }
+    menuBtn.addEventListener("click", function () { setMenu(menu.hidden); });
+    menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+  }
+
+  // numbers count up when they come into view
+  document.querySelectorAll("[data-count]").forEach(function (el) {
+    var to = +el.getAttribute("data-count"), suffix = el.getAttribute("data-suffix") || "";
+    if (calm || !("IntersectionObserver" in window)) return;
+    el.textContent = "0" + suffix;
+    var seen = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return; seen.disconnect();
+      var t0 = performance.now();
+      (function step(now) { var k = Math.min(1, (now - t0) / 1200), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to * e) + suffix; if (k < 1) requestAnimationFrame(step); })(t0);
+    });
+    seen.observe(el);
+  });
+
+  // phones lean toward your mouse (desktop) and cards get a soft light where you point
+  var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (fine && !calm) {
+    document.querySelectorAll(".tilt").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        el.style.transform = "perspective(900px) rotateY(" + (x * 10).toFixed(2) + "deg) rotateX(" + (-y * 10).toFixed(2) + "deg) translateY(-4px)";
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+  }
+  document.querySelectorAll(".spot").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  // a thin line at the top fills up as you read down the page
+  var bar = document.getElementById("progress");
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
@@ -63,6 +118,7 @@
     scrollY = window.scrollY || 0;
     var max = Math.max(1, document.documentElement.scrollHeight - H);
     progress = clamp(scrollY / max);
+    if (bar) bar.style.transform = "scaleX(" + progress.toFixed(4) + ")";
     if (dusk) dusk.style.opacity = clamp((progress - .12) / .35).toFixed(3);
     if (dawn) dawn.style.opacity = clamp((progress - .55) / .35).toFixed(3);
     if (rays) rays.style.opacity = (clamp((progress - .5) / .4) * .9).toFixed(3);
@@ -107,7 +163,7 @@
   requestAnimationFrame(frame);
 
   // sections fade up as they come into view
-  var items = document.querySelectorAll(".step, .feat, .plan, .shots figure, .faq details, .final");
+  var items = document.querySelectorAll(".step, .feat, .plan, .shots figure, .faq details, .final, .timeline li, .hstep, .update, .rules li, .split-demo > div, .table-wrap, .contact-card");
   if ("IntersectionObserver" in window && !calm) {
     items.forEach(function (el) { el.classList.add("reveal"); });
     var io = new IntersectionObserver(function (es) {

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Showcase · ClipHeaven</title>
+<meta name="description" content="See the clips ClipHeaven makes and the app you post them from.">
+<meta name="theme-color" content="#070A16">
+<meta property="og:title" content="Showcase · ClipHeaven">
+<meta property="og:description" content="See the clips ClipHeaven makes and the app you post them from.">
+<meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/">Home</a><a href="/showcase.html" aria-current="page">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/">Home</a><a href="/showcase.html" aria-current="page">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Showcase</p>
+      <h1>See what ClipHeaven makes.</h1>
+      <p class="lede">From a live stream to a clip that's ready to post, and the app you post it from.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>The look: face on top, game below.</h2>
+      <div class="split-demo">
+        <div class="before">
+          <span class="tag">Before · the stream</span>
+          <div class="frame16"><div class="game-art"></div><div class="cam-art"></div></div>
+          <p>A wide stream with a small facecam in the corner. On a phone, the face is tiny and the reaction gets lost.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="after">
+          <span class="tag good">After · the clip</span>
+          <div class="frame9"><div class="cam-top"></div><div class="line"></div><div class="game-bottom"></div><span class="quote">“no way that just happened”</span></div>
+          <p>The streamer's face fills the top, the game fills the bottom, and short quotes sit on the line between. Built for TikTok, Reels and Shorts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>A day with ClipHeaven.</h2>
+      <ol class="timeline">
+        <li><time>7:00</time><div><h3>The morning run starts</h3><p>ClipHeaven checks your streamers for last night's biggest moments. You're asleep.</p></div></li>
+        <li><time>7:15</time><div><h3>Clips land in your app</h3><p>Each one cut, captioned and scored out of 10. You get a notification.</p></div></li>
+        <li><time>12:30</time><div><h3>You post at lunch</h3><p>Open Post next: save, copy caption, post, next. About 30 seconds a clip.</p></div></li>
+        <li><time>18:00</time><div><h3>The evening run</h3><p>A fresh batch from the afternoon streams, ready for prime time.</p></div></li>
+        <li><time>21:00</time><div><h3>Check what's working</h3><p>See which streamers and clips do best, and tune tomorrow's picks.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tight showcase">
+    <div class="wrap">
+      <h2>The app.</h2>
+      <div class="shots">
+        <figure><div class="phone sm tilt"><img src="/img/app-home.jpg" width="585" height="1266" loading="lazy" alt="Home: clips ready to post with AI scores."></div><figcaption>Home: what's ready to post</figcaption></figure>
+        <figure><div class="phone sm tilt"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips: a grid of finished clips."></div><figcaption>Clips: everything you've made</figcaption></figure>
+        <figure><div class="phone sm tilt"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting: save, copy caption, mark as posted or skip."></div><figcaption>Post next: save, copy, post</figcaption></figure>
+        <figure><div class="phone sm tilt"><img src="/img/app-stats.jpg" width="585" height="1266" loading="lazy" alt="Stats: clips made and per streamer."></div><figcaption>Stats: see what works</figcaption></figure>
+      </div>
+      <p class="fine center">Example clips shown with placeholder pictures.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
+        <h2>Want this for your clip page?</h2>
+        <p>Join the waitlist and be first in when ClipHeaven opens.</p>
+        <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h4>Product</h4><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h4>Help</h4><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="/site.js"></script>
+</body>
+</html>

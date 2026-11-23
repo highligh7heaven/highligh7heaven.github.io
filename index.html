@@ -3,17 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ClipHeaven</title>
+<title>ClipHeaven: viral clips, made while you sleep</title>
 <meta name="description" content="ClipHeaven finds the best moments from your favourite streamers and turns them into ready-to-post vertical clips with captions. You just post.">
-<meta name="theme-color" content="#0E1220">
+<meta name="theme-color" content="#070A16">
 <meta property="og:title" content="ClipHeaven: viral clips, made while you sleep">
-<meta property="og:description" content="The best stream moments, cut, captioned and ready to post. You just post.">
+<meta property="og:description" content="ClipHeaven finds the best moments from your favourite streamers and turns them into ready-to-post vertical clips with captions. You just post.">
 <meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<!-- The sky behind everything: night stars at the top, clouds and dawn in the middle, golden heaven at the bottom. -->
 <div class="heaven" aria-hidden="true">
   <div class="sky sky-night"></div>
   <div class="sky sky-dusk" id="sky-dusk"></div>
@@ -25,25 +24,21 @@
   <div class="clouds near" id="clouds-near"></div>
   <canvas id="motes"></canvas>
 </div>
-
-
+<div class="progress" id="progress" aria-hidden="true"></div>
 <header class="nav">
   <div class="nav-in">
-    <a class="brand" href="/" aria-label="ClipHeaven home">
-      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>
-      ClipHeaven
-    </a>
-    <nav class="links" aria-label="Sections">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a class="btn btn-primary btn-sm js-waitlist" href="#waitlist">Join the waitlist</a>
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/" aria-current="page">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/" aria-current="page">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
   </div>
 </header>
-
 <main>
+
 
   <!-- Hero -->
   <section class="hero">
@@ -59,14 +54,14 @@
           <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
         </div>
         <ul class="trust" aria-label="Highlights">
-          <li><b>20+</b> clips a day</li>
+          <li><b data-count="20" data-suffix="+">20+</b> clips a day</li>
           <li><b>0</b> editing</li>
           <li><b>1 tap</b> captions</li>
         </ul>
       </div>
       <div class="hero-phone">
         <div class="glow" aria-hidden="true"></div>
-        <figure class="phone">
+        <figure class="phone tilt">
           <img src="/img/app-home.jpg" width="585" height="1266" alt="The ClipHeaven app's Home screen: 6 clips ready to post, each with an AI score.">
         </figure>
         <div class="float f1" aria-hidden="true"><span class="ring">9</span> AI score</div>
@@ -74,6 +69,16 @@
       </div>
     </div>
   </section>
+
+  <!-- clips arriving, like the app's live feed -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>🎬 New clip · Streamer A · <b>9/10</b></span><span>✓ Posted to TikTok</span><span>🎬 New clip · Streamer C · <b>8/10</b></span><span>🔥 Streamer B is live</span>
+      <span>🎬 New clip · Streamer B · <b>9/10</b></span><span>💬 Caption copied</span><span>🎬 New clip · Streamer A · <b>7/10</b></span><span>⏰ Next run in 2h</span>
+      <span>🎬 New clip · Streamer A · <b>9/10</b></span><span>✓ Posted to TikTok</span><span>🎬 New clip · Streamer C · <b>8/10</b></span><span>🔥 Streamer B is live</span>
+      <span>🎬 New clip · Streamer B · <b>9/10</b></span><span>💬 Caption copied</span><span>🎬 New clip · Streamer A · <b>7/10</b></span><span>⏰ Next run in 2h</span>
+    </div>
+  </div>
 
   <!-- How it works -->
   <section class="section" id="how">
@@ -105,7 +110,7 @@
     <div class="wrap">
       <p class="kicker">The app</p>
       <h2>Everything on your phone.</h2>
-      <p class="lede">No laptop, no editing software. Your clips land in the app, best first.</p>
+      <p class="lede">No laptop, no editing software. Your clips land in the app, best first. <a class="more" href="/showcase.html">See the showcase →</a></p>
       <div class="shots">
         <figure><div class="phone sm"><img src="/img/app-clips.jpg" width="585" height="1266" loading="lazy" alt="Clips screen: a grid of finished clips, each marked Ready."></div><figcaption>Every clip, ready to go</figcaption></figure>
         <figure><div class="phone sm"><img src="/img/app-clip.jpg" width="585" height="1266" loading="lazy" alt="Posting screen: Open in Drive, Copy caption, Mark as posted and Skip."></div><figcaption>Save, copy, post, next</figcaption></figure>
@@ -120,14 +125,14 @@
       <p class="kicker">Features</p>
       <h2>Built for clip pages that want to grow.</h2>
       <div class="grid">
-        <article class="feat"><span class="ico" aria-hidden="true">🎯</span><h3>AI picks the moments</h3><p>Every candidate is watched and scored out of 10. Weak clips are skipped before they're made.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">💬</span><h3>Captions that fit</h3><p>Word-perfect captions timed to the speech, with strong language bleeped.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">🎥</span><h3>Facecam on top</h3><p>Gameplay streams get the streamer's face on top and the game below, so viewers see the reaction.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">⏰</span><h3>On autopilot</h3><p>Set the hours and it runs by itself. Get a ping when new clips are ready.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">📲</span><h3>Post next</h3><p>One clip at a time: save, copy caption, mark as posted or skip. Built for posting fast.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">🔥</span><h3>Who's hot</h3><p>See which streamers are blowing up right now and add them in one tap.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">☁️</span><h3>Saved to your Drive</h3><p>Finished clips go straight into your own Google Drive. Yours to keep.</p></article>
-        <article class="feat"><span class="ico" aria-hidden="true">🛡️</span><h3>Plays by the rules</h3><p>No auto-posting, no fake views. You stay in control of every post, and every clip credits the streamer.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">🎯</span><h3>AI picks the moments</h3><p>Every candidate is watched and scored out of 10. Weak clips are skipped before they're made.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">💬</span><h3>Captions that fit</h3><p>Word-perfect captions timed to the speech, with strong language bleeped.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">🎥</span><h3>Facecam on top</h3><p>Gameplay streams get the streamer's face on top and the game below, so viewers see the reaction.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">⏰</span><h3>On autopilot</h3><p>Set the hours and it runs by itself. Get a ping when new clips are ready.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">📲</span><h3>Post next</h3><p>One clip at a time: save, copy caption, mark as posted or skip. Built for posting fast.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">🔥</span><h3>Who's hot</h3><p>See which streamers are blowing up right now and add them in one tap.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">☁️</span><h3>Saved to your Drive</h3><p>Finished clips go straight into your own Google Drive. Yours to keep.</p></article>
+        <article class="feat spot"><span class="ico" aria-hidden="true">🛡️</span><h3>Plays by the rules</h3><p>No auto-posting, no fake views. You stay in control of every post, and every clip credits the streamer.</p></article>
       </div>
     </div>
   </section>
@@ -163,7 +168,7 @@
           <a class="btn btn-primary js-waitlist" href="#waitlist">Join the waitlist</a>
         </article>
       </div>
-      <p class="fine">Prices in USD. Making clips uses your own free Google and GitHub accounts; the setup guide walks you through it.</p>
+      <p class="fine"><a class="more" href="/pricing.html">Compare plans →</a> Prices in USD. Making clips uses your own free Google and GitHub accounts; the setup guide walks you through it.</p>
     </div>
   </section>
 
@@ -176,7 +181,7 @@
         <details><summary>Do I need to know how to edit?</summary><p>No. ClipHeaven finds, cuts and captions the clips. You only post them.</p></details>
         <details><summary>Does it post for me?</summary><p>No, on purpose. You post every clip yourself, which keeps your accounts within TikTok's, Instagram's and YouTube's rules. ClipHeaven gets the clip and caption ready so posting takes seconds.</p></details>
         <details><summary>Which streamers can I clip?</summary><p>Any public Twitch or Kick streamer you choose. Every clip credits the streamer's channel. Always follow each platform's rules and respect a streamer's wishes about clipping.</p></details>
-        <details><summary>Do I need a computer?</summary><p>No. Everything runs in the cloud and you use the app on your phone. Setup takes about 20 minutes with the step-by-step guide.</p></details>
+        <details><summary>Do I need a computer?</summary><p>No. Everything runs in the cloud and you use the app on your phone. Setup takes about 30–40 minutes once, with the <a href="/help.html">step-by-step guide</a>.</p></details>
         <details><summary>How many clips will I get?</summary><p>You choose. Around 20 a day is a good target for a growing page, and you can make more or fewer.</p></details>
         <details><summary>When does it launch?</summary><p>Soon. Join the waitlist and you'll be the first to know, plus early-bird pricing.</p></details>
       </div>
@@ -196,21 +201,20 @@
     </div>
   </section>
 
-</main>
 
+</main>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="brand small">ClipHeaven</span>
-    <nav aria-label="Legal">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/tool.html">About the tool</a>
-      <a id="contact" href="#" hidden>Contact</a>
-    </nav>
-    <span class="muted">© <span id="year">2026</span> ClipHeaven</span>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h4>Product</h4><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h4>Help</h4><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
   </div>
 </footer>
-
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <script src="/site.js"></script>
 </body>
 </html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pricing · ClipHeaven</title>
+<meta name="description" content="ClipHeaven pricing: $25 a month or $199 lifetime.">
+<meta name="theme-color" content="#070A16">
+<meta property="og:title" content="Pricing · ClipHeaven">
+<meta property="og:description" content="ClipHeaven pricing: $25 a month or $199 lifetime.">
+<meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html" aria-current="page">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html" aria-current="page">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Pricing</p>
+      <h1>Simple pricing. No editing bill.</h1>
+      <p class="lede">One plan for everything ClipHeaven does. Pay monthly, or once for life.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="plans">
+        <article class="plan spot">
+          <h3>Monthly</h3>
+          <p class="price"><b>$25</b><span>/ month</span></p>
+          <ul><li>Unlimited streamers</li><li>Clips every day on autopilot</li><li>AI scores and captions</li><li>Facecam-on-top look</li><li>The full ClipHeaven app</li></ul>
+          <a class="btn btn-ghost js-waitlist" href="/#waitlist">Join the waitlist</a>
+        </article>
+        <article class="plan best spot">
+          <span class="badge">Best value</span>
+          <h3>Lifetime</h3>
+          <p class="price"><b>$199</b><span>one time</span></p>
+          <ul><li>Everything in Monthly</li><li>Pay once, keep it forever</li><li>All future updates</li><li>Early access to new features</li><li>Pays for itself in 8 months</li></ul>
+          <a class="btn btn-primary js-waitlist" href="/#waitlist">Join the waitlist</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2>ClipHeaven vs editing by hand.</h2>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th scope="col"></th><th scope="col">Editing by hand</th><th scope="col" class="us">ClipHeaven</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Finding the moment</th><td>Watching hours of streams</td><td class="us">Done for you, scored out of 10</td></tr>
+            <tr><th scope="row">Cutting and framing</th><td>An editing app, every clip</td><td class="us">Automatic, face on top</td></tr>
+            <tr><th scope="row">Captions</th><td>Typed or fixed by hand</td><td class="us">Timed to the speech, swears bleeped</td></tr>
+            <tr><th scope="row">Time per clip</th><td>Often 15–30 minutes</td><td class="us">About 30 seconds to post</td></tr>
+            <tr><th scope="row">Clips a day</th><td>A few, if you have time</td><td class="us">20+ while you sleep</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Times are typical estimates and vary by clip and person.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap narrow">
+      <h2>Money questions.</h2>
+      <div class="faq">
+        <details><summary>Is there anything else to pay for?</summary><p>ClipHeaven runs on your own free Google and GitHub accounts. Making lots of clips every day can use more of GitHub's free monthly minutes than the free plan includes; the setup guide explains your options, including free ones.</p></details>
+        <details><summary>Can I cancel Monthly?</summary><p>Yes, any time from your Whop account. You keep access until the end of the month you paid for.</p></details>
+        <details><summary>What does "Lifetime" mean?</summary><p>You pay once and keep ClipHeaven, including future updates, for as long as ClipHeaven is around.</p></details>
+        <details><summary>When can I buy?</summary><p>At launch. Join the waitlist and you'll hear first, with early-bird pricing.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
+        <h2>Lock in early-bird pricing.</h2>
+        <p>Waitlist members hear first when ClipHeaven opens.</p>
+        <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h4>Product</h4><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h4>Help</h4><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="/site.js"></script>
+</body>
+</html>

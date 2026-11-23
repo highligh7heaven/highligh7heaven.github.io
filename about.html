@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About & contact · ClipHeaven</title>
+<meta name="description" content="Why ClipHeaven exists, the rules it follows, and how to get in touch.">
+<meta name="theme-color" content="#070A16">
+<meta property="og:title" content="About & contact · ClipHeaven">
+<meta property="og:description" content="Why ClipHeaven exists, the rules it follows, and how to get in touch.">
+<meta property="og:image" content="https://highligh7heaven.github.io/img/app-home.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="heaven" aria-hidden="true">
+  <div class="sky sky-night"></div>
+  <div class="sky sky-dusk" id="sky-dusk"></div>
+  <div class="sky sky-dawn" id="sky-dawn"></div>
+  <canvas id="stars"></canvas>
+  <div class="rays" id="rays"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="clouds far" id="clouds-far"></div>
+  <div class="clouds mid" id="clouds-mid"></div>
+  <div class="clouds near" id="clouds-near"></div>
+  <canvas id="motes"></canvas>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="ClipHeaven home"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a>
+    <nav class="links" aria-label="Pages"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-sm js-waitlist nav-cta" href="/#waitlist">Join the waitlist</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu"><a href="/">Home</a><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a><a href="/updates.html">What's new</a></nav>
+    <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">About</p>
+      <h1>Made by a clipper, for clippers.</h1>
+      <p class="lede">ClipHeaven started as one person's tool for running a clip page without spending every evening editing.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap narrow prose">
+      <p>Running a clip page means watching hours of streams, finding the moment, cutting it, framing it, captioning it and posting it, again and again. ClipHeaven does everything except the posting, so you can spend your time on what grows a page: posting consistently and picking the right streamers.</p>
+      <p>It's built with a few rules that won't change:</p>
+      <ul class="rules">
+        <li><b>You post, always.</b> ClipHeaven never posts for you, so your accounts stay within each platform's rules.</li>
+        <li><b>No fake views.</b> No bots, no tricks. Just good clips.</li>
+        <li><b>Credit the streamer.</b> Every clip shows where it came from.</li>
+        <li><b>Your stuff is yours.</b> Clips save to your own Google Drive, and your keys stay in your own accounts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tight" id="contact">
+    <div class="wrap narrow">
+      <div class="contact-card spot">
+        <h2>Get in touch</h2>
+        <p class="muted" id="contact-none">A contact email is coming soon. For now, join the waitlist and we'll reach out at launch.</p>
+        <p id="contact-has" hidden><a class="btn btn-ghost btn-lg" id="contact-link" href="#">Email us</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="final">
+        <div class="halo-big" aria-hidden="true"><i></i></div>
+        <h2>Come along for the ride.</h2>
+        <p>Join the waitlist to hear when ClipHeaven opens.</p>
+        <a class="btn btn-primary btn-lg js-waitlist" href="/#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand small" href="/"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="9" ry="3" fill="none" stroke="#EBBE55" stroke-width="2.4"/><path d="M9 11.5v15.5c0 1.2 1.3 1.9 2.3 1.3l13-7.8c1-.6 1-2 0-2.6l-13-7.7c-1-.6-2.3.1-2.3 1.3z" fill="currentColor"/></svg>ClipHeaven</a><p class="muted">Viral clips, made while you sleep.</p></div>
+      <div><h4>Product</h4><a href="/showcase.html">Showcase</a><a href="/pricing.html">Pricing</a><a href="/updates.html">What's new</a></div>
+      <div><h4>Help</h4><a href="/help.html">Setup guide</a><a href="/#faq">FAQ</a><a href="/about.html">About &amp; contact</a></div>
+      <div><h4>Legal</h4><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/tool.html">About the tool</a></div>
+    </div>
+    <p class="muted copy">© <span id="year">2026</span> ClipHeaven</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="/site.js"></script>
+</body>
+</html>
